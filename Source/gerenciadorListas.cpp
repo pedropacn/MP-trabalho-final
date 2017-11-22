@@ -17,18 +17,18 @@ lista recuperarListaPorCod(int codListaRecuperada){ //usuario inseriu Codigo da 
 	//FCLOSE
 }
 
+void exibirLista(lista listaExibida) {
+
+	//EXIBIR CONTEUDO DA STRUCT listaExibida
+	return;
+}
+
 void apagarLista(int codListaRecuperada) {
 	//REALIZA FOPEN EM ARQUIVO listas.txt
 	//FORMATO DA LISTA: <codigo>;<codUsuario>;<numeroDeItens>;<item1>;<item2>;...\n
 	//ENCONTRAR LISTA NO ARQUIVO
 	//REMOVER DO ARQUIVO TODA A LINHA CORRESPONDENTE À LISTA
 	//FCLOSE	
-}
-
-void exibirLista(lista listaExibida) {
-
-	//EXIBIR CONTEUDO DA STRUCT listaExibida
-	return;
 }
 
 void salvarLista(lista listaFinal) {
