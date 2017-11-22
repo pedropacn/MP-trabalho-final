@@ -1,0 +1,17 @@
+#CRIAR O ARQUIVO DE TESTES
+#ADICIONAR NELE O #INCLUDE DO ARQUIVO .CPP TESTADO
+#Ex: arquivo tests.cpp tem "include <testado.cpp>
+
+#ABRIR O ARQUIVO CMakeLists.txt NA PASTA CMakeFiles
+#ALTERAR A SEGUINTE LINHA DE CODIGO
+	add_executable(<executavel> <codigo de teste>)
+Ex:     add_executable(runTests tests.cpp)
+
+
+#ENTRAR NA PASTA Testing NO TERMINAL
+#EXECUTAR AS SEGUINTES LINHAS DE CODIGO
+
+mkdir -p build #CRIAR DIRETORIO PARA RECEBER ARQUIVOS DO MAKE, CASO NAO EXISTA
+cmake CMakeFiles #REALIZA O MAKE DA BIBLIOTECA
+make       #GERA O EXECUTAVEL
+./runTests
