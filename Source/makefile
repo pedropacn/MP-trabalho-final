@@ -1,9 +1,9 @@
 CC = g++
-CFLAGS = -std=c++11
-OBJECTS = gerenciadorItens.o gerenciadorListas.o main.o
+CFLAGS = -std=c++11 -lncurses
+OBJECTS = common.o gerenciadorItens.o gerenciadorListas.o main.o
 
 all : $(OBJECTS)
-	$(CC) $(CFLAGS) $(OBJECTS) -o run
+	$(CC) $(OBJECTS) -o run $(CFLAGS)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $<

@@ -1,13 +1,14 @@
 #ifndef LISTA_H
 #define LISTA_H
 
-#include<string>
+#include <string>
 #include "item.h"
+#define SIZEID 4
 
 struct lista {
-    int codLista;
-    int codUsuario;
-    item* elemento;
+    char* codLista;
+    char* codUsuario;
+    char* elementos;
 };
 
 #endif

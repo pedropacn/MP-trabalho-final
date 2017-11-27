@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <ncurses.h>
 #include "gerenciadorItens.h"
 #include "gerenciadorListas.h"
 
@@ -9,34 +10,44 @@
 using namespace std;
 
 int main (int argc, char* argv[]) {
+
+	initscr(); //inicializa o ncurses
+	keypad(stdscr, TRUE); //habilita backspace, delete, arrows
 	
 	do {
-		cout << "Insira a opção desejada\n";
-		cout << "1. Criar/Editar lista\n";
-		cout << "3. Cadastrar item\n";
-		cout << "0. Encerrar programa\n";
+		//move(2,0);
+		//refresh();
+		printw("MENU PRINCIPAL\n");
+		printw("Insira a opção desejada\n");
+		printw("1. Criar/Editar lista\n");
+		printw("3. Cadastrar item\n");
+		printw("0. Encerrar programa\n\n");
 		
-		int opcao;
-		cin >> opcao;
-		cout <<"\n";
-		
+		char opcao = getch();
+		//printw("\n\n");
+		clear(); //limpa a tela
+
 		switch(opcao) {
-			case 1:
+			case '1':
 				//cout << "Gerenciando lista\n";
 				menu_lista();
 				break;
-			case 3:
+
+			case '3':
 				//cout << "Cadastrar objeto\n";
 				menu_cadastrar_item();
 				break;
-			case 0:
+
+			case '0':
+				endwin(); //finaliza o ncurses
 				return 0; //finaliza o programa
 				break;
+
 			default:
-				cout << "Opção nao identificada\n";
+				printw("Opção nao identificada\n\n");
 				break;
 		}
 	} while (true); //executa eternamente
-	
+
 	return 0;
 }

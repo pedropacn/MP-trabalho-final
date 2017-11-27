@@ -1,6 +1,11 @@
 /*Funcoes do modulo*/
 #include <iostream>
+#include <ncurses.h>
 #include "item.h"
+#include "common.h"
+
+#define SIZENAME 200
+#define SIZEBARRAS 13
 
 using namespace std;
 
@@ -41,27 +46,28 @@ item pesquisaItemPorNome(string nomeItem) {
 
 void menu_cadastrar_item() {
 
-	string codBarras;
-	cout << "Insira o código de barras do Item:\n";
-	cin >> codBarras;
+	refresh();
+	clear();
+	
+	char codBarras[SIZEBARRAS];
+	printw("Insira o código de barras do Item:\n");
+	getnstr(codBarras, SIZEBARRAS);
+	clear();
 	
 	item pesquisado = (pesquisaItemPorCodBarras(codBarras)); //Retornar o Item, caso exista
 	if (pesquisado.codBarras == "") { //o Item não foi encontrado
-		cout << "Item já cadastrado\n";
+		printw("Item de código %s já está cadastrado\n\n", codBarras);
 		return;
 	}
 
-	string name;
-	cout << "1. Insira o nome do Item: \n";
-	cin >> name;
-
-
-	cout << "2. Cadastrar objeto\n";
-	cout << "0. Encerrar programa\n";
+	char name[SIZENAME];
+	printw("Insira o nome do Item: \n");
+	getnstr(name, SIZENAME);
 
 	insereItem(pesquisado);
-	
-	int opcao;
-	cin >> opcao;
+	clear();
 
+	printw("Item %s de código de barras %s cadastrado com sucesso: \n", name, codBarras);
+
+	endwin(); //finaliza o ncurses
 }
