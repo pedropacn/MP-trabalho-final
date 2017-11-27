@@ -20,7 +20,8 @@ int main (int argc, char* argv[]) {
 		printw("MENU PRINCIPAL\n");
 		printw("Insira a opção desejada\n");
 		printw("1. Criar/Editar lista\n");
-		printw("3. Cadastrar item\n");
+		printw("2. Cadastrar item\n");
+		printw("3. Realizar compra\n");
 		printw("0. Encerrar programa\n\n");
 		
 		char opcao = getch();
@@ -33,9 +34,14 @@ int main (int argc, char* argv[]) {
 				menu_lista();
 				break;
 
-			case '3':
+			case '2':
 				//cout << "Cadastrar objeto\n";
 				menu_cadastrar_item();
+				break;
+
+			case '3':
+				//cout << "Cadastrar objeto\n";
+				menu_compra();
 				break;
 
 			case '0':
@@ -48,6 +54,5 @@ int main (int argc, char* argv[]) {
 				break;
 		}
 	} while (true); //executa eternamente
-
 	return 0;
 }

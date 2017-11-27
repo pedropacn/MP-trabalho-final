@@ -122,5 +122,38 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 	}
 	salvarLista(listaAtual);
 
+	endwin();
+	return; //finalizar operação
+}
+
+void menu_compra() { //REALIZA COMPRA NO MERCADO
+	lista listaAtual;
+	listaAtual.codLista = NULL; //inicializa com valor inválido
+	char codListaRecuperada[SIZEID], numUsuario[SIZEID]; //VERIFICAR COMO SAO LIDOS
+
+	printw("Insira o código da lista cujas compras serão realizadas\n");
+	getnstr(codListaRecuperada,SIZEID);
+	listaAtual = recuperarListaPorCod(codListaRecuperada); //atualiza listaAtual para valor obtido de listas.txt
+	
+	if (listaAtual.codLista == NULL) { //lista inexistente
+		clear();
+		printw("Lista de código %s não encontrada\n\n", codListaRecuperada);
+		return;
+	}
+
+	printw("Insira o código do usuário\n");
+	getnstr(numUsuario,SIZEID);
+
+	if (strcmp(listaAtual.codUsuario,numUsuario)) {
+		clear();
+		printw("Usuário inválido para a lista em questão\n\n");
+		return;
+	}
+
+	/*INFORMAR O CUSTO TOTAL DE listaAtual*/
+
+	
+
+	endwin();
 	return; //finalizar operação
 }
