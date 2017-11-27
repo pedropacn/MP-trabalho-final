@@ -5,6 +5,8 @@
 #include "lista.h"
 #include "common.h"
 
+#define SIZEID 4
+
 using namespace std;
 
 void removeDaLista(string itemRemovido, lista listaCompras) {
@@ -18,7 +20,7 @@ lista recuperarListaPorCod(char* codListaRecuperada){ //usuario inseriu Codigo d
 	listaEncontrada.elementos = NULL;
 
 	//REALIZA FOPEN EM ARQUIVO listas.txt
-	//FORMATO DA LISTA: <codigo>;<codUsuario>;<numeroDeItens>;<item1>;<item2>;...\n
+	//FORMATO DA LISTA: <codigo>;<codUsuario>;<numeroDeItens>;<item1>,<item2>,...\n
 	//PESQUISAR Item NO ARQUIVO
 	//CASO ENCONTRE O ARQUIVO, ATUALIZAR OS VALORES DE encontrado.codBarras e encontrado.nomeItem
 	//FCLOSE
@@ -33,7 +35,7 @@ void exibirLista(lista listaExibida) {
 
 void apagarLista(char* codListaRecuperada) {
 	//REALIZA FOPEN EM ARQUIVO listas.txt
-	//FORMATO DA LISTA: <codigo>;<codUsuario>;<numeroDeItens>;<item1>;<item2>;...\n
+	//FORMATO DA LISTA: <codigo>;<codUsuario>;<numeroDeItens>;<item1>,<item2>;...\n
 	//ENCONTRAR LISTA NO ARQUIVO
 	//REMOVER DO ARQUIVO TODA A LINHA CORRESPONDENTE À LISTA
 	//FCLOSE	
@@ -41,7 +43,7 @@ void apagarLista(char* codListaRecuperada) {
 
 void salvarLista(lista listaFinal) {
 	//REALIZA FOPEN EM ARQUIVO listas.txt
-	//FORMATO DA LISTA: <codigo>;<codUsuario>;<numeroDeItens>;<item1>;<item2>;...\n
+	//FORMATO DA LISTA: <codigo>;<codUsuario>;<numeroDeItens>;<item1>,<item2>;...\n
 	//INSERE LISTA NO ARQUIVO
 	//FCLOSE
 
@@ -71,7 +73,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 			
 			if (listaAtual.codLista == NULL) { //lista inexistente
 				clear();
-				printw("Codigo de lista %s inválido\n\n", codListaRecuperada);
+				printw("Lista de código %s não encontrada\n\n", codListaRecuperada);
 				return;
 			}
 

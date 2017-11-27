@@ -12,13 +12,12 @@ std::string getstring() {
     // so any backspacing etc. has already been taken care of
     int ch = getch();
 
-    while ( ch != '\n' )
-    {
+    while ( ch != '\n') {
         input.push_back( ch );
         ch = getch();
     }
 
-    // restore your cbreak / echo settings here
+    //restore your cbreak / echo settings here
 
     return input;
 }
