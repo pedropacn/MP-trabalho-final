@@ -17,9 +17,9 @@ void removeDaLista(string itemRemovido, lista listaCompras) {
 
 lista recuperarListaPorCod(char* codListaRecuperada){ //usuario inseriu Codigo da lista; retornar struct da lista
 	lista listaEncontrada; //inicializar
-	listaEncontrada.codLista = NULL;
-	listaEncontrada.codUsuario = NULL;
-	listaEncontrada.elementos = NULL;
+	listaEncontrada.codLista = "";
+	listaEncontrada.codUsuario = "";
+	listaEncontrada.elementos = "";
 
 	//REALIZA FOPEN EM ARQUIVO listas.txt
 	//FORMATO DA LISTA: <idLista>;<userID>;<numItens>;item1,item2,itemN
@@ -61,7 +61,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 	char opcao = getch();
 
 	lista listaAtual;
-	listaAtual.codLista = NULL; //inicializa com valor inválido
+	listaAtual.codLista = ""; //inicializa com valor inválido
 	char codListaRecuperada[SIZE_ID_LISTA], numUsuario[SIZE_ID_LISTA]; //VERIFICAR COMO SAO LIDOS
 
 	switch(opcao) {
@@ -74,7 +74,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 			getnstr(codListaRecuperada,SIZE_ID_LISTA);
 			listaAtual = recuperarListaPorCod(codListaRecuperada); //atualiza listaAtual para valor obtido de listas.txt
 			
-			if (listaAtual.codLista == NULL) { //lista inexistente
+			if (listaAtual.codLista == "") { //lista inexistente
 				clear();
 				printw("Lista de código %s não encontrada\n\n", codListaRecuperada);
 				return;
@@ -83,7 +83,8 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 			printw("Insira o código do usuário\n");
 			getnstr(numUsuario,SIZE_ID_LISTA);
 
-			if (strcmp(listaAtual.codUsuario,numUsuario)) {
+			if (listaAtual.codUsuario.compare(numUsuario) == 0) {
+
 				clear();
 				printw("Usuário inválido para a lista em questão\n\n");
 				return;
@@ -131,14 +132,14 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 
 void menu_compra() { //REALIZA COMPRA NO MERCADO
 	lista listaAtual;
-	listaAtual.codLista = NULL; //inicializa com valor inválido
+	listaAtual.codLista = ""; //inicializa com valor inválido
 	char codListaRecuperada[SIZE_ID_LISTA], numUsuario[SIZE_ID_LISTA]; //VERIFICAR COMO SAO LIDOS
 
 	printw("Insira o código da lista cujas compras serão realizadas\n");
 	getnstr(codListaRecuperada,SIZE_ID_LISTA);
 	listaAtual = recuperarListaPorCod(codListaRecuperada); //atualiza listaAtual para valor obtido de listas.txt
 	
-	if (listaAtual.codLista == NULL) { //lista inexistente
+	if (listaAtual.codLista == "") { //lista inexistente
 		clear();
 		printw("Lista de código %s não encontrada\n\n", codListaRecuperada);
 		return;
@@ -147,7 +148,7 @@ void menu_compra() { //REALIZA COMPRA NO MERCADO
 	printw("Insira o código do usuário\n");
 	getnstr(numUsuario,SIZE_ID_LISTA);
 
-	if (strcmp(listaAtual.codUsuario,numUsuario)) {
+	if (listaAtual.codUsuario.compare(numUsuario)== 0) {
 		clear();
 		printw("Usuário inválido para a lista em questão\n\n");
 		return;
