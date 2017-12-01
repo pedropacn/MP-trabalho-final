@@ -54,6 +54,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 	printw("Insira a opção desejada\n");
 	printw("1. Criar nova lista \n");
 	printw("2. Editar lista existente \n");
+	printw("3. Editar lista existente \n");
 	printw("Qualquer outro valor para encerrar\n");
 	char opcao = getch();
 
