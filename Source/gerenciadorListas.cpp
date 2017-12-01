@@ -5,7 +5,9 @@
 #include "lista.h"
 #include "common.h"
 
-#define SIZEID 4
+#define SIZE_ID_LISTA 4
+#define SIZE_ID_USER 2
+#define SIZE_CODBARRAS 13
 
 using namespace std;
 
@@ -20,7 +22,7 @@ lista recuperarListaPorCod(char* codListaRecuperada){ //usuario inseriu Codigo d
 	listaEncontrada.elementos = NULL;
 
 	//REALIZA FOPEN EM ARQUIVO listas.txt
-	//FORMATO DA LISTA: <codigo>;<codUsuario>;<numeroDeItens>;<item1>,<item2>,...\n
+	//FORMATO DA LISTA: <idLista>;<userID>;<numItens>;item1,item2,itemN
 	//PESQUISAR Item NO ARQUIVO
 	//CASO ENCONTRE O ARQUIVO, ATUALIZAR OS VALORES DE encontrado.codBarras e encontrado.nomeItem
 	//FCLOSE
@@ -35,7 +37,7 @@ void exibirLista(lista listaExibida) {
 
 void apagarLista(char* codListaRecuperada) {
 	//REALIZA FOPEN EM ARQUIVO listas.txt
-	//FORMATO DA LISTA: <codigo>;<codUsuario>;<numeroDeItens>;<item1>,<item2>;...\n
+	//FORMATO DA LISTA: <idLista>;<userID>;<numItens>;item1,item2,itemN
 	//ENCONTRAR LISTA NO ARQUIVO
 	//REMOVER DO ARQUIVO TODA A LINHA CORRESPONDENTE À LISTA
 	//FCLOSE	
@@ -43,7 +45,7 @@ void apagarLista(char* codListaRecuperada) {
 
 void salvarLista(lista listaFinal) {
 	//REALIZA FOPEN EM ARQUIVO listas.txt
-	//FORMATO DA LISTA: <codigo>;<codUsuario>;<numeroDeItens>;<item1>,<item2>;...\n
+	//FORMATO DA LISTA: <idLista>;<userID>;<numItens>;item1,item2,itemN
 	//INSERE LISTA NO ARQUIVO
 	//FCLOSE
 
@@ -60,7 +62,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 
 	lista listaAtual;
 	listaAtual.codLista = NULL; //inicializa com valor inválido
-	char codListaRecuperada[SIZEID], numUsuario[SIZEID]; //VERIFICAR COMO SAO LIDOS
+	char codListaRecuperada[SIZE_ID_LISTA], numUsuario[SIZE_ID_LISTA]; //VERIFICAR COMO SAO LIDOS
 
 	switch(opcao) {
 		case '1':
@@ -69,7 +71,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 		case '2':
 			clear();
 			printw("Insira o código da lista\n");
-			getnstr(codListaRecuperada,SIZEID);
+			getnstr(codListaRecuperada,SIZE_ID_LISTA);
 			listaAtual = recuperarListaPorCod(codListaRecuperada); //atualiza listaAtual para valor obtido de listas.txt
 			
 			if (listaAtual.codLista == NULL) { //lista inexistente
@@ -79,7 +81,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 			}
 
 			printw("Insira o código do usuário\n");
-			getnstr(numUsuario,SIZEID);
+			getnstr(numUsuario,SIZE_ID_LISTA);
 
 			if (strcmp(listaAtual.codUsuario,numUsuario)) {
 				clear();
@@ -130,10 +132,10 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 void menu_compra() { //REALIZA COMPRA NO MERCADO
 	lista listaAtual;
 	listaAtual.codLista = NULL; //inicializa com valor inválido
-	char codListaRecuperada[SIZEID], numUsuario[SIZEID]; //VERIFICAR COMO SAO LIDOS
+	char codListaRecuperada[SIZE_ID_LISTA], numUsuario[SIZE_ID_LISTA]; //VERIFICAR COMO SAO LIDOS
 
 	printw("Insira o código da lista cujas compras serão realizadas\n");
-	getnstr(codListaRecuperada,SIZEID);
+	getnstr(codListaRecuperada,SIZE_ID_LISTA);
 	listaAtual = recuperarListaPorCod(codListaRecuperada); //atualiza listaAtual para valor obtido de listas.txt
 	
 	if (listaAtual.codLista == NULL) { //lista inexistente
@@ -143,7 +145,7 @@ void menu_compra() { //REALIZA COMPRA NO MERCADO
 	}
 
 	printw("Insira o código do usuário\n");
-	getnstr(numUsuario,SIZEID);
+	getnstr(numUsuario,SIZE_ID_LISTA);
 
 	if (strcmp(listaAtual.codUsuario,numUsuario)) {
 		clear();

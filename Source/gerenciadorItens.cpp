@@ -7,22 +7,24 @@
 #include "common.h"
 #include <string>
 
-#define SIZENAME 200
-#define SIZEBARRAS 13
+#define SIZE_NAME_ITEM 200
+#define SIZE_CODBARRAS 13
 
 using namespace std;
 
-void insereItem(item novoItem) {
+bool insereItem(item novoItem) {
+	//RETORNA TRUE SE ESCREVER; RETORNA FALSE SE DER MERDA
 
 	//REALIZA FOPEN EM ARQUIVO itens.txt
 	//FORMATO DO ITEM NO ARQUIVO: <id>;<codBarras>;<nomeItem>\n
+	//O ID TERA SEMPRE 4 CARACTERES Ex: 0001, 0002... ate 9999
 	//INSERE Item NO ARQUIVO
 	//FCLOSE
-	return;
+	return false;
 }
 
 item pesquisaItemPorCodBarras(string codBarras) {
-	item encontrado;
+	item encontrado, temp;
 	encontrado.codBarras = ""; //inicializar struct com valores nulos
 	encontrado.nomeItem = "";
 	
@@ -30,18 +32,16 @@ item pesquisaItemPorCodBarras(string codBarras) {
 	ifstream myfile ("itens.txt");
 
 	while (getline (myfile,line)) { //para cada line
-		const char* lineChar = line.c_str();
-		printw("%s\n", lineChar);
 
-		//string nameItem = line.substr(0, str.find(";"));
-		//printf("%s\n", nameItem);
+		temp.codBarras = line.substr(0, 13);
+		temp.preco = line.substr(14, 7);
+		temp.nomeItem = line.substr(21);
 
+		if (codBarras.compare(temp.codBarras) == 0) { //se o pesquisado == encontrado
+			encontrado = temp;
+			break;
+		}
 	}
-	//REALIZA FOPEN EM ARQUIVO itens.txt
-	//FORMATO DO ITEM NO ARQUIVO: <id>;<codBarras>;<nomeItem>\n
-	//PESQUISAR Item NO ARQUIVO
-	//CASO ENCONTRE O ARQUIVO, ATUALIZAR OS VALORES DE encontrado.codBarras e encontrado.nomeItem
-	//FCLOSE
 
     myfile.close();
 	return encontrado;
@@ -65,26 +65,28 @@ void menu_cadastrar_item() {
 	refresh();
 	clear(); //limpar tela
 	
-	char codBarras[SIZEBARRAS];
-	printw("Insira o código de barras do Item:\n");
-	getnstr(codBarras, SIZEBARRAS);
+	char codBarras[SIZE_CODBARRAS];
+	escreve("Insira o código de barras do Item:\n");
+	getnstr(codBarras, SIZE_CODBARRAS); //METODO PARA LER STRING DO TECLADO
 	clear();
 	
 	item pesquisado = (pesquisaItemPorCodBarras(codBarras)); //Retornar o Item, caso exista
-	if (pesquisado.codBarras == "") { //o Item não foi encontrado
-		printw("Item de código %s já está cadastrado\n\n", codBarras);
+	if (pesquisado.codBarras != "") { //o Item não foi encontrado
+		escreve("Item de código ", codBarras, " já está cadastrado\n\n");
 		return;
 	}
 
 	/*cadastrar item*/
-	char name[SIZENAME];
-	printw("Insira o nome do Item: \n");
-	getnstr(name, SIZENAME);
-
-	insereItem(pesquisado);
+	escreve ("Item ",codBarras," nao cadastrado\n");
+	escreve("Insira o nome do item: ");
+	char name[SIZE_NAME_ITEM];
+	getnstr(name, SIZE_NAME_ITEM);
 	clear();
 
-	printw("Item %s de código de barras %s cadastrado com sucesso: \n", name, codBarras);
-
+	bool result = insereItem(pesquisado);
+	if (result)
+		escreve("Item ",name," inserido com sucesso\n"); //necessario pra mostrar variavel inserida pelo usuario
+	else
+		escreve("Insercao do item ",name," invalida\n"); //necessario pra mostrar variavel inserida pelo usuario
 	endwin(); //finaliza o ncurses
 }
