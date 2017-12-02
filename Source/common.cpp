@@ -1,6 +1,6 @@
-#include <iostream>
-#include <string>
-#include <ncurses.h>
+#include <string> //classe string
+#include <ncurses.h> //interface grafica
+#include <iostream> //ler e escrever na tela
 
 std::string getstring() {
     std::string input;

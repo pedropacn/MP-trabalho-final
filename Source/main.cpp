@@ -1,8 +1,6 @@
-#include <iostream>
-#include <string>
-#include <ncurses.h>
 #include "gerenciadorItens.h"
 #include "gerenciadorListas.h"
+#include <ncurses.h>
 
 //MODULARIZACAO: PROGRAMA EM MULTICODIGOS
 //PROGRAMA PRINCIPAL

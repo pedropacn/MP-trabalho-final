@@ -1,11 +1,10 @@
 /*Funcoes do modulo*/
-#include <iostream> //print
-#include <fstream> //manipular arquivo
-#include <stdlib.h> //atoi
-#include <ncurses.h>
-#include <string.h>
-#include "lista.h"
-#include "common.h"
+#include "lista.h" //struct lista
+#include "common.h" //funcoes genericas para todos os .cpp
+#include <fstream> //manipular arquivos com getline
+#include <ncurses.h> //interface grafica
+#include <string.h> //tipo string
+#include <stdlib.h> //atoi - converter string para inteiro
 
 #define SIZE_ID_LISTA 4
 #define SIZE_ID_USER 2
@@ -102,6 +101,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 			printw("Insira o código do usuário\n");
 			getnstr(numUsuario,SIZE_ID_LISTA);
 			stringNumUsuario = numUsuario; //criar string a partir do const char* para usar compare
+			clear();
 
 			if (stringNumUsuario.compare(listaAtual.codUsuario) != 0) {
 

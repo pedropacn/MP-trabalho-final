@@ -1,11 +1,8 @@
 /*Funcoes do modulo*/
-#include <iostream>
-#include <fstream>
-#include <ncurses.h>
-#include <fstream>
-#include "item.h"
-#include "common.h"
-#include <string>
+#include "item.h" //struct item
+#include "common.h" //funcoes genericas para todos os .cpp
+#include <fstream> //manipular arquivos com getline
+#include <ncurses.h> //interface grafica
 
 #define SIZE_NAME_ITEM 200
 #define SIZE_CODBARRAS 13
@@ -26,9 +23,6 @@ bool insereItem(std::string name,std::string preco,std::string codBarras) {
 	fprintf(fp,"%s;%s;%s",codigobarra,precos,nome);
 	fclose(fp);
 
-
-
-
 	//RETORNA TRUE SE ESCREVER; RETORNA FALSE SE DER MERDA
 
 	//REALIZA FOPEN EM ARQUIVO itens.txt
@@ -39,7 +33,7 @@ bool insereItem(std::string name,std::string preco,std::string codBarras) {
 	return true;
 }
 
-item pesquisaItemPorCodBarras(string codBarras) {
+item pesquisaItemPorCodBarras(string codBarras) { //OK
 	
 	item encontrado, temp;
 	encontrado.codBarras = ""; //inicializar struct com valores nulos
@@ -64,7 +58,7 @@ item pesquisaItemPorCodBarras(string codBarras) {
 	return encontrado;
 }
 
-item pesquisaItemPorNome(string nomeItem) {
+item pesquisaItemPorNome(string nomeItem) { //TODO
 	item encontrado;
 	encontrado.codBarras = ""; //inicializar struct com valores nulos
 	encontrado.nomeItem = "";
