@@ -9,10 +9,26 @@
 
 #define SIZE_NAME_ITEM 200
 #define SIZE_CODBARRAS 13
+#define SIZE_PRECO 	   7
 
 using namespace std;
 
-bool insereItem(item novoItem) {
+bool insereItem(std::string name,std::string preco,std::string codBarras) {
+	FILE* fp;
+	fp =fopen("itens.txt","a");
+	if (fp ==NULL){
+		escreve("Erro na inserção");
+		return false;
+	}
+	const char* nome = name.c_str();
+	const char* codigobarra = codBarras.c_str();
+	const char* precos = preco.c_str();
+	fprintf(fp,"%s;%s;%s",codigobarra,precos,nome);
+	fclose(fp);
+
+
+
+
 	//RETORNA TRUE SE ESCREVER; RETORNA FALSE SE DER MERDA
 
 	//REALIZA FOPEN EM ARQUIVO itens.txt
@@ -20,10 +36,11 @@ bool insereItem(item novoItem) {
 	//O ID TERA SEMPRE 4 CARACTERES Ex: 0001, 0002... ate 9999
 	//INSERE Item NO ARQUIVO
 	//FCLOSE
-	return false;
+	return true;
 }
 
 item pesquisaItemPorCodBarras(string codBarras) {
+	
 	item encontrado, temp;
 	encontrado.codBarras = ""; //inicializar struct com valores nulos
 	encontrado.nomeItem = "";
@@ -77,13 +94,16 @@ void menu_cadastrar_item() {
 	}
 
 	/*cadastrar item*/
-	escreve ("Item ",codBarras," nao cadastrado\n");
+	escreve ("Item ",codBarras," nao esta cadastrado\n");
 	escreve("Insira o nome do item: ");
 	char name[SIZE_NAME_ITEM];
 	getnstr(name, SIZE_NAME_ITEM);
+	escreve("Insira o preco do produto: ");
+	char preco[SIZE_PRECO];
+	getnstr(preco, SIZE_PRECO);
 	clear();
 
-	bool result = insereItem(pesquisado);
+	bool result = insereItem(name,preco,codBarras);
 	if (result)
 		escreve("Item ",name," inserido com sucesso\n"); //necessario pra mostrar variavel inserida pelo usuario
 	else
