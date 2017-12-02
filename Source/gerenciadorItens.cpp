@@ -51,12 +51,6 @@ item pesquisaItemPorNome(string nomeItem) {
 	item encontrado;
 	encontrado.codBarras = ""; //inicializar struct com valores nulos
 	encontrado.nomeItem = "";
-
-	//REALIZA FOPEN EM ARQUIVO itens.txt
-	//FORMATO DO ARQUIVO: <id>;<codBarras>;<nomeItem>\n
-	//PESQUISAR Item NO ARQUIVO
-	//CASO ENCONTRE O ARQUIVO, ATUALIZAR OS VALORES DE encontrado.codBarras e encontrado.nomeItem
-	//FCLOSE
 	return encontrado;
 }
 

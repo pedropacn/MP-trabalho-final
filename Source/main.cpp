@@ -26,7 +26,6 @@ int main (int argc, char* argv[]) {
 		
 		char opcao = getch();
 		//printw("\n\n");
-		clear(); //limpa a tela
 
 		switch(opcao) {
 			case '1':
@@ -51,6 +50,7 @@ int main (int argc, char* argv[]) {
 
 			default:
 				printw("Opção nao identificada\n\n");
+				clear();
 				break;
 		}
 	} while (true); //executa eternamente
