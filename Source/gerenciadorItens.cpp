@@ -6,6 +6,7 @@
 #include "item.h"
 #include "common.h"
 #include <string>
+#include <string.h>
 
 #define SIZE_NAME_ITEM 200
 #define SIZE_CODBARRAS 13
@@ -23,7 +24,19 @@ bool insereItem(std::string name,std::string preco,std::string codBarras) {
 	const char* nome = name.c_str();
 	const char* codigobarra = codBarras.c_str();
 	const char* precos = preco.c_str();
-	fprintf(fp,"%s;%s;%s",codigobarra,precos,nome);
+	
+	if (strlen(codigobarra)!=13){
+		escreve("Codigo de barras deve ter 13 caracteres\n");
+		return false;
+	}
+	if (strlen(precos)!=7){
+		escreve("Precos deve ter 7 caracteres\n");
+		return false;
+	}
+
+
+
+	fprintf(fp,"%s;%s;%s\n",codigobarra,precos,nome);
 	fclose(fp);
 
 
@@ -65,16 +78,33 @@ item pesquisaItemPorCodBarras(string codBarras) {
 }
 
 item pesquisaItemPorNome(string nomeItem) {
-	item encontrado;
+	item encontrado, temp;
 	encontrado.codBarras = ""; //inicializar struct com valores nulos
 	encontrado.nomeItem = "";
+	
+	string line;
+	ifstream myfile ("itens.txt");
+
+	while (getline (myfile,line)) { //para cada line
+
+		temp.codBarras = line.substr(0, 13);
+		temp.preco = line.substr(14, 7);
+		temp.nomeItem = line.substr(21);
+
+		if (nomeItem.compare(temp.nomeItem) == 0) { //se o pesquisado == encontrado
+			encontrado = temp;
+			break;
+		}
+	}
+
+    myfile.close();
+	return encontrado;
 
 	//REALIZA FOPEN EM ARQUIVO itens.txt
 	//FORMATO DO ARQUIVO: <id>;<codBarras>;<nomeItem>\n
 	//PESQUISAR Item NO ARQUIVO
 	//CASO ENCONTRE O ARQUIVO, ATUALIZAR OS VALORES DE encontrado.codBarras e encontrado.nomeItem
 	//FCLOSE
-	return encontrado;
 }
 
 void menu_cadastrar_item() {
@@ -83,7 +113,7 @@ void menu_cadastrar_item() {
 	clear(); //limpar tela
 	
 	char codBarras[SIZE_CODBARRAS];
-	escreve("Insira o código de barras do Item:\n");
+	escreve("Insira o código de barras do Item(13 digitos):\n");
 	getnstr(codBarras, SIZE_CODBARRAS); //METODO PARA LER STRING DO TECLADO
 	clear();
 	
@@ -98,7 +128,7 @@ void menu_cadastrar_item() {
 	escreve("Insira o nome do item: ");
 	char name[SIZE_NAME_ITEM];
 	getnstr(name, SIZE_NAME_ITEM);
-	escreve("Insira o preco do produto: ");
+	escreve("Insira o preco do produto(7 digitos): ");
 	char preco[SIZE_PRECO];
 	getnstr(preco, SIZE_PRECO);
 	clear();
@@ -107,6 +137,6 @@ void menu_cadastrar_item() {
 	if (result)
 		escreve("Item ",name," inserido com sucesso\n"); //necessario pra mostrar variavel inserida pelo usuario
 	else
-		escreve("Insercao do item ",name," invalida\n"); //necessario pra mostrar variavel inserida pelo usuario
+		escreve("Insercao do item '",name,"' eh invalida\n"); //necessario pra mostrar variavel inserida pelo usuario
 	endwin(); //finaliza o ncurses
 }
