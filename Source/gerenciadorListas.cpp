@@ -17,6 +17,28 @@ static const char* TEMP_FILE = "temp.txt";
 
 using namespace std;
 
+void exibirLista(lista listaExibida) {
+	printw("------\n");
+	printw("Codigo da lista: %s\n", listaExibida.codLista.c_str());
+	printw("Codigo do usuário dono da lista: %s\n", listaExibida.codUsuario.c_str());
+	printw("Numero de elementos: %d\n", listaExibida.numElementos);
+	printw("Código dos elementos: %s\n\n", listaExibida.elementos.c_str());
+	string barrasElementoAtual;
+
+	for (int i = 0; i < listaExibida.numElementos; i++) { //Para cada elemento da lista...
+		barrasElementoAtual = listaExibida.elementos.substr((14*i),13);
+		item itemAtual = pesquisaItemPorCodBarras(barrasElementoAtual);
+		string nomeItem = itemAtual.nomeItem;
+		printw("Nome do elemento %d: %s\n", i, nomeItem.c_str());
+		printw("Seu preço é: %s\n", itemAtual.preco.c_str());
+		printw("Codigo de barras é: %s\n\n", barrasElementoAtual.c_str());
+
+	}
+
+	printw("------\n");
+	return;
+}
+
 lista adicionaNaLista(item adicionado, lista listaCompras) { //adiciona item na lista e retorna-a
 	
 	//TODO: SE ITEM EXISTE ANTES DE SAIR ADICIONANDO
@@ -193,28 +215,6 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 
 	endwin();
 	return; //finalizar operação
-}
-
-void exibirLista(lista listaExibida) {
-	printw("------\n");
-	printw("Codigo da lista: %s\n", listaExibida.codLista.c_str());
-	printw("Codigo do usuário dono da lista: %s\n", listaExibida.codUsuario.c_str());
-	printw("Numero de elementos: %d\n", listaExibida.numElementos);
-	printw("Código dos elementos: %s\n\n", listaExibida.elementos.c_str());
-	string barrasElementoAtual;
-
-	for (int i = 0; i < listaExibida.numElementos; i++) { //Para cada elemento da lista...
-		barrasElementoAtual = listaExibida.elementos.substr((14*i),13);
-		item itemAtual = pesquisaItemPorCodBarras(barrasElementoAtual);
-		string nomeItem = itemAtual.nomeItem;
-		printw("Nome do elemento %d: %s\n", i, nomeItem.c_str());
-		printw("Seu preço é: %s\n", itemAtual.preco.c_str());
-		printw("Codigo de barras é: %s\n\n", barrasElementoAtual.c_str());
-
-	}
-
-	printw("------\n");
-	return;
 }
 
 void menu_compra() { //REALIZA COMPRA NO MERCADO
