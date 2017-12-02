@@ -7,12 +7,13 @@
 #define SIZE_NAME_ITEM 200
 #define SIZE_CODBARRAS 13
 #define SIZE_PRECO 	   7
+static const char* ITENS_FILE = "itens.txt";
 
 using namespace std;
 
 bool insereItem(std::string name,std::string preco,std::string codBarras) {
 	FILE* fp;
-	fp =fopen("itens.txt","a");
+	fp =fopen(ITENS_FILE,"a");
 	if (fp ==NULL){
 		escreve("Erro na inserção");
 		return false;
@@ -40,7 +41,7 @@ item pesquisaItemPorCodBarras(string codBarras) { //OK
 	encontrado.nomeItem = "";
 	
 	string line;
-	ifstream myfile ("itens.txt");
+	ifstream myfile (ITENS_FILE);
 
 	while (getline (myfile,line)) { //para cada line
 

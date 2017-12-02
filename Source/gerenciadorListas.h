@@ -15,7 +15,8 @@ lista recuperarListaPorCod(std::string codListaRecuperada); //usuario inseriu Co
 bool possuiAcessoLista(std::string codUsuario, lista listaCompras); //saber se o codUsuario eh dono da lista
 
 void exibirLista(lista listaExibida); //exibe 'listaAtual' na tela
-void apagarLista(std::string codListaRecuperada);
+string apagarLista(char* codListaRecuperada); //apaga a lista do arquivo e retorna sua sting correspondente
 void salvarLista(lista listaFinal);
+
 
 #endif

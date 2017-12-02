@@ -1,26 +1,12 @@
 #include <string> //classe string
 #include <ncurses.h> //interface grafica
 #include <iostream> //ler e escrever na tela
+#include <string.h> //ler e escrever na tela
 
-std::string getstring() {
-    std::string input;
+//copia a string para o char*
+void stringToChar (char* cString, std::string str) {
 
-    // let the terminal do the line editing
-    nocbreak();
-    echo();
-
-    // this reads from buffer after <ENTER>, not "raw" 
-    // so any backspacing etc. has already been taken care of
-    int ch = getch();
-
-    while ( ch != '\n') {
-        input.push_back( ch );
-        ch = getch();
-    }
-
-    //restore your cbreak / echo settings here
-
-    return input;
+    strcpy(cString, str.c_str());
 }
 
 /*funcao necessaria pra mostrar variavel inserida pelo usuario*/
@@ -46,4 +32,25 @@ void escreve (std::string texto1, std::string texto2, std::string texto3) {
     printw("%s", lineChar2);
     printw("%s", lineChar3);
     return;
+}
+
+std::string getstring() {
+    std::string input;
+
+    // let the terminal do the line editing
+    nocbreak();
+    echo();
+
+    // this reads from buffer after <ENTER>, not "raw" 
+    // so any backspacing etc. has already been taken care of
+    int ch = getch();
+
+    while ( ch != '\n') {
+        input.push_back( ch );
+        ch = getch();
+    }
+
+    //restore your cbreak / echo settings here
+
+    return input;
 }

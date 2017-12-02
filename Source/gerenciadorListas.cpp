@@ -9,6 +9,9 @@
 #define SIZE_ID_LISTA 4
 #define SIZE_ID_USER 2
 #define SIZE_CODBARRAS 13
+static const char* LISTAS_FILE = "listas.txt";
+static const char* TEMP_FILE = "temp.txt";
+
 
 using namespace std;
 
@@ -24,7 +27,7 @@ lista recuperarListaPorCod(string codListaRecuperada){ //usuario inseriu Codigo 
 	listaEncontrada.elementos = "";
 	
 	string line;
-	ifstream myfile ("listas.txt");
+	ifstream myfile (LISTAS_FILE);
 
 	while (getline (myfile,line)) { //para cada line
 
@@ -45,18 +48,59 @@ lista recuperarListaPorCod(string codListaRecuperada){ //usuario inseriu Codigo 
 }
 
 void exibirLista(lista listaExibida) {
+	printw("------\n");
+	printw("Codigo da lista: %s\n", listaExibida.codLista.c_str());
+	printw("Codigo do usuário dono da lista: %s\n", listaExibida.codUsuario.c_str());
+	printw("Numero de elementos: %d\n", listaExibida.numElementos);
+	//printw("Código dos elementos: %s\n", listaExibida.elementos.c_str());
+	
+	char* buffer = new char[listaExibida.elementos.length()+1]; //define o tamanho do buffer
+	stringToChar (buffer, listaExibida.elementos); //copia string para buffer
+	printw("Código dos elementos: %s\n", buffer);
+	
+	char* token;
 
-	//EXIBIR CONTEUDO DA STRUCT listaExibida
+	/*pega o promeiro token*/
+	token = strtok(buffer,","); //NAO ESTA FUNCIONANDO
+
+	while (token != NULL) {
+		printf ("@%s\n", token);
+		token = strtok (NULL, ",");
+	}
+
+	delete [] buffer;
+	free(token);
+	printw("------\n");
 	return;
 }
 
-void apagarLista(char* codListaRecuperada) {
-	printw("Deletando lista do arquivo\n");
-	//REALIZA FOPEN EM ARQUIVO listas.txt
-	//FORMATO DA LISTA: <idLista>;<userID>;<numItens>;item1,item2,itemN
-	//ENCONTRAR LISTA NO ARQUIVO
-	//REMOVER DO ARQUIVO TODA A LINHA CORRESPONDENTE À LISTA
-	//FCLOSE	
+/*Apaga a lista do arquivo .txt e retorna sua string correspondente*/
+string apagarLista(char* codListaRecuperada) {
+	
+	string line;
+	string listaRemovida;
+	string stringCodLista = codListaRecuperada; //linha de percorrimento do arquivo
+	
+	ifstream arqListas;
+	ofstream arqTemp;
+	arqListas.open(LISTAS_FILE);
+	arqTemp.open(TEMP_FILE);
+
+	while (getline(arqListas,line)) { //para cada line do arquivo
+
+		if (stringCodLista.compare(line.substr(0,4)) == 0) { //se a lista atual é a que deve ser apagada
+			printw("Lista %s removida do arquivo\n", codListaRecuperada);
+			listaRemovida = line;
+		}
+		else {
+			arqTemp << line << endl;
+		}
+	}
+	arqTemp.close();
+	arqListas.close();
+	remove(LISTAS_FILE);
+    rename(TEMP_FILE,LISTAS_FILE);
+    return listaRemovida;
 }
 
 void salvarLista(lista listaFinal) {
@@ -97,7 +141,6 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 				return;
 			}
 			clear();
-			printw("Lista %s do usuario %s possui os seguintes %d elementos: !%s!\n", listaAtual.codLista.c_str(), listaAtual.codUsuario.c_str(), listaAtual.numElementos, listaAtual.elementos.c_str()); //c_str() utilizada pra fazer printw
 			printw("Insira o código do usuário\n");
 			getnstr(numUsuario,SIZE_ID_LISTA);
 			stringNumUsuario = numUsuario; //criar string a partir do const char* para usar compare
