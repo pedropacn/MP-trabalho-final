@@ -1,22 +1,19 @@
 /*Funcoes do modulo*/
-#include <iostream>
-#include <fstream>
-#include <ncurses.h>
-#include <fstream>
-#include "item.h"
-#include "common.h"
-#include <string>
-#include <string.h>
+#include "item.h" //struct item
+#include "common.h" //funcoes genericas para todos os .cpp
+#include <fstream> //manipular arquivos com getline
+#include <ncurses.h> //interface grafica
 
 #define SIZE_NAME_ITEM 200
 #define SIZE_CODBARRAS 13
 #define SIZE_PRECO 	   7
+static const char* ITENS_FILE = "itens.txt";
 
 using namespace std;
 
 bool insereItem(std::string name,std::string preco,std::string codBarras) {
 	FILE* fp;
-	fp =fopen("itens.txt","a");
+	fp =fopen(ITENS_FILE,"a");
 	if (fp ==NULL){
 		escreve("Erro na inserção");
 		return false;
@@ -39,9 +36,6 @@ bool insereItem(std::string name,std::string preco,std::string codBarras) {
 	fprintf(fp,"%s;%s;%s\n",codigobarra,precos,nome);
 	fclose(fp);
 
-
-
-
 	//RETORNA TRUE SE ESCREVER; RETORNA FALSE SE DER MERDA
 
 	//REALIZA FOPEN EM ARQUIVO itens.txt
@@ -52,14 +46,14 @@ bool insereItem(std::string name,std::string preco,std::string codBarras) {
 	return true;
 }
 
-item pesquisaItemPorCodBarras(string codBarras) {
+item pesquisaItemPorCodBarras(string codBarras) { //OK
 	
 	item encontrado, temp;
 	encontrado.codBarras = ""; //inicializar struct com valores nulos
 	encontrado.nomeItem = "";
 	
 	string line;
-	ifstream myfile ("itens.txt");
+	ifstream myfile (ITENS_FILE);
 
 	while (getline (myfile,line)) { //para cada line
 
@@ -98,13 +92,7 @@ item pesquisaItemPorNome(string nomeItem) {
 	}
 
     myfile.close();
-	return encontrado;
-
-	//REALIZA FOPEN EM ARQUIVO itens.txt
-	//FORMATO DO ARQUIVO: <id>;<codBarras>;<nomeItem>\n
-	//PESQUISAR Item NO ARQUIVO
-	//CASO ENCONTRE O ARQUIVO, ATUALIZAR OS VALORES DE encontrado.codBarras e encontrado.nomeItem
-	//FCLOSE
+	return encontrado
 }
 
 void menu_cadastrar_item() {

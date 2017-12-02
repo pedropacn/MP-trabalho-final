@@ -5,12 +5,13 @@
 #include "item.h"
 
 struct lista {
-    std::string codLista; //Ex: 2
-    std::string codUsuario; //Ex: 1200
-    std::string elementos; //Ex: 1,2,3,3,5,3,4 - totalizando 7 itens
+    std::string codLista; //Ex: 0200
+    std::string codUsuario; //Ex: 05
+    int numElementos; //Ex: 3
+    std::string elementos; //Ex: 9789563530766,0009563530766,9789563530766 - totalizando 3 itens
 
     /*O exemplo estará persistido no arquivo listas.txt na estrutura:
-		2;1200;7;1,2,3,3,5,3,4
+		0200;05;003;9789563530766,0009563530766,9789563530766;
 
 	Dessa forma, cada linha do arquivo representa uma lista
     */
