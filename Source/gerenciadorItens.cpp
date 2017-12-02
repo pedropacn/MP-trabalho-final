@@ -3,6 +3,7 @@
 #include "common.h" //funcoes genericas para todos os .cpp
 #include <fstream> //manipular arquivos com getline
 #include <ncurses.h> //interface grafica
+#include <string.h> //manipulação de strings
 
 #define SIZE_NAME_ITEM 200
 #define SIZE_CODBARRAS 13
@@ -92,7 +93,7 @@ item pesquisaItemPorNome(string nomeItem) {
 	}
 
     myfile.close();
-	return encontrado
+	return encontrado;
 }
 
 void menu_cadastrar_item() {
