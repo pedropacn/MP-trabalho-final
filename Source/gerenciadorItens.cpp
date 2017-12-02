@@ -32,18 +32,8 @@ bool insereItem(std::string name,std::string preco,std::string codBarras) {
 		return false;
 	}
 
-
-
 	fprintf(fp,"%s;%s;%s\n",codigobarra,precos,nome);
 	fclose(fp);
-
-	//RETORNA TRUE SE ESCREVER; RETORNA FALSE SE DER MERDA
-
-	//REALIZA FOPEN EM ARQUIVO itens.txt
-	//FORMATO DO ITEM NO ARQUIVO: <id>;<codBarras>;<nomeItem>\n
-	//O ID TERA SEMPRE 4 CARACTERES Ex: 0001, 0002... ate 9999
-	//INSERE Item NO ARQUIVO
-	//FCLOSE
 	return true;
 }
 
@@ -60,7 +50,7 @@ item pesquisaItemPorCodBarras(string codBarras) { //OK
 
 		temp.codBarras = line.substr(0, 13);
 		temp.preco = line.substr(14, 7);
-		temp.nomeItem = line.substr(21);
+		temp.nomeItem = line.substr(22);
 
 		if (codBarras.compare(temp.codBarras) == 0) { //se o pesquisado == encontrado
 			encontrado = temp;
@@ -76,6 +66,7 @@ item pesquisaItemPorNome(string nomeItem) {
 	item encontrado, temp;
 	encontrado.codBarras = ""; //inicializar struct com valores nulos
 	encontrado.nomeItem = "";
+	encontrado.preco = "0000.00";
 	
 	string line;
 	ifstream myfile ("itens.txt");
@@ -84,7 +75,7 @@ item pesquisaItemPorNome(string nomeItem) {
 
 		temp.codBarras = line.substr(0, 13);
 		temp.preco = line.substr(14, 7);
-		temp.nomeItem = line.substr(21);
+		temp.nomeItem = line.substr(22);
 
 		if (nomeItem.compare(temp.nomeItem) == 0) { //se o pesquisado == encontrado
 			encontrado = temp;
@@ -94,6 +85,14 @@ item pesquisaItemPorNome(string nomeItem) {
 
     myfile.close();
 	return encontrado;
+}
+
+void exibirItem(item mostrar) {
+	printw("------\n");
+	printw("Nome do item: %s\n", mostrar.nomeItem.c_str());
+	printw("Codigo de barras: %s\n", mostrar.codBarras.c_str());
+	printw("Preco registrado: %s\n", mostrar.preco.c_str());
+	printw("------\n");
 }
 
 void menu_cadastrar_item() {

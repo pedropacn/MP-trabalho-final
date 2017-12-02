@@ -6,6 +6,7 @@
 #include "item.h"
 
 void menu_cadastrar_item(); //usuário selecionou opção de Inserir item
+void exibirItem(item mostrar);
 
 item criaItem(); //inicializa item
 bool insereItem(std::string name,std::string preco,std::string codBarras); //insere item no arquivo itens.txt

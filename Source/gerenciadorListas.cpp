@@ -1,11 +1,13 @@
 /*Funcoes do modulo*/
 #include "lista.h" //struct lista
 #include "common.h" //funcoes genericas para todos os .cpp
+#include "gerenciadorItens.h" //gerenciar itens da lista
 #include <fstream> //manipular arquivos com getline
 #include <ncurses.h> //interface grafica
 #include <string.h> //tipo string
 #include <stdlib.h> //atoi - converter string para inteiro
 
+#define SIZE_NAME_ITEM 200
 #define SIZE_ID_LISTA 4
 #define SIZE_ID_USER 2
 #define SIZE_CODBARRAS 13
@@ -14,6 +16,19 @@ static const char* TEMP_FILE = "temp.txt";
 
 
 using namespace std;
+
+lista adicionaNaLista(item adicionado, lista listaCompras) { //adiciona item na lista e retorna-a
+	
+	//TO DO: SE ITEM EXISTE ANTES DE SAIR ADICIONANDO
+
+	lista novaLista = listaCompras;
+
+	string listaAntiga = listaCompras.elementos;
+	printw("A lista antiga era %s\n", listaAntiga.c_str());
+	string listaNova = listaAntiga + "," + adicionado.codBarras;
+	novaLista.elementos = listaNova;
+	return novaLista;
+} 
 
 void removeDaLista(string itemRemovido, lista listaCompras) {
 	//REMOVE DE listaCompras A PRIMEIRA OCORRENCIA DO PRODUTO nomeProduto (CASO EXISTAM 2 DO PRODUTO, MANTER UM DELES)
@@ -52,24 +67,19 @@ void exibirLista(lista listaExibida) {
 	printw("Codigo da lista: %s\n", listaExibida.codLista.c_str());
 	printw("Codigo do usuário dono da lista: %s\n", listaExibida.codUsuario.c_str());
 	printw("Numero de elementos: %d\n", listaExibida.numElementos);
-	//printw("Código dos elementos: %s\n", listaExibida.elementos.c_str());
-	
-	char* buffer = new char[listaExibida.elementos.length()+1]; //define o tamanho do buffer
-	stringToChar (buffer, listaExibida.elementos); //copia string para buffer
-	printw("Código dos elementos: %s\n", buffer);
-	
-	char* token;
+	printw("Código dos elementos: %s\n\n", listaExibida.elementos.c_str());
+	string barrasElementoAtual;
 
-	/*pega o promeiro token*/
-	token = strtok(buffer,","); //NAO ESTA FUNCIONANDO
+	for (int i = 0; i < listaExibida.numElementos; i++) { //Para cada elemento da lista...
+		barrasElementoAtual = listaExibida.elementos.substr((14*i),13);
+		item itemAtual = pesquisaItemPorCodBarras(barrasElementoAtual);
+		string nomeItem = itemAtual.nomeItem;
+		printw("Nome do elemento %d: %s\n", i, nomeItem.c_str());
+		printw("Seu preço é: %s\n", itemAtual.preco.c_str());
+		printw("Codigo de barras é: %s\n\n", barrasElementoAtual.c_str());
 
-	while (token != NULL) {
-		printf ("@%s\n", token);
-		token = strtok (NULL, ",");
 	}
 
-	delete [] buffer;
-	free(token);
 	printw("------\n");
 	return;
 }
@@ -104,10 +114,11 @@ string apagarLista(char* codListaRecuperada) {
 }
 
 void salvarLista(lista listaFinal) {
-	//REALIZA FOPEN EM ARQUIVO listas.txt
-	//FORMATO DA LISTA: <idLista>;<userID>;<numItens>;item1,item2,itemN
-	//INSERE LISTA NO ARQUIVO
-	//FCLOSE
+	
+	FILE* fpointer;
+	fpointer = fopen(LISTAS_FILE, "a");
+	fprintf(fpointer, "%s;%s;%03d;%s\n", listaFinal.codLista.c_str(), listaFinal.codUsuario.c_str(), listaFinal.numElementos, listaFinal.elementos.c_str());
+	fclose(fpointer);
 
 }
 
@@ -141,7 +152,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 				return;
 			}
 			clear();
-			printw("Insira o código do usuário\n");
+			printw("Insira o código do usuário dono da lista\n");
 			getnstr(numUsuario,SIZE_ID_LISTA);
 			stringNumUsuario = numUsuario; //criar string a partir do const char* para usar compare
 			clear();
@@ -158,35 +169,50 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 			clear();
 			return;
 	}
-
+	
+	clear();
 	//nesse ponto, listaAtual já contem a lista do cliente
 	exibirLista(listaAtual); //mostra a lista para o cliente
 
 	opcao = '0';
-	printw("Insira a opção desejada\n");
+	printw("\nInsira a opção desejada\n");
 	printw("1. Inserir produto \n");
 	printw("2. Remover produto \n");
 	printw("Qualquer outro valor para encerrar\n");
 	opcao = getch();
-	char itemRemovido[200];
+	char itemRemovido[SIZE_NAME_ITEM], itemAdicionado[SIZE_NAME_ITEM];
+	item novoItem;
+	clear();
 
 	switch(opcao) {
 		case '1':
-			printw("Insira o nome do produto a ser inserido\n");
-			//CRIAR UM METODO PARA VERIFICAR SE O ITEM ESTA CADASTRADO EM listaAtual
-				//CASO ESTEJA, INSERIR NA LISTA E FINALIZAR: inserirItem(item, listaAtual);
-				//CASO NÃO, OFERECER AO USUARIO PARA CADASTRAR O ITEM: menu_cadastrar_item();
+			printw("Insira o nome do produto que deseja inserir\n");
+			getnstr(itemAdicionado,SIZE_NAME_ITEM);
+			novoItem = pesquisaItemPorNome(itemAdicionado);
+
+			if (novoItem.preco.compare("0000.00") == 0) { //item não foi encontrado na pesquisa por nome
+				printw("Item de nome %s não foi encontrado no cadastro de itens\n", itemAdicionado);
+				salvarLista(listaAtual);
+				return;
+			}
+
+			printw("Lista de compras antes: %s\n", listaAtual.elementos.c_str());
+			listaAtual = adicionaNaLista(novoItem, listaAtual); //atualiza lista com novo elemento
+			printw("Lista de compras depois: %s\n", listaAtual.elementos.c_str());
+
+			salvarLista(listaAtual);
 			break;
 		case '2':
 			printw("Insira o nome do produto a ser removido da lista\n");
-			getnstr(itemRemovido,200);
+			getnstr(itemRemovido,SIZE_NAME_ITEM);
 			removeDaLista(itemRemovido, listaAtual);
+			salvarLista(listaAtual);
 			break;
 		default:
 			clear();
+			salvarLista(listaAtual);
 			return;
 	}
-	salvarLista(listaAtual);
 
 	endwin();
 	return; //finalizar operação
