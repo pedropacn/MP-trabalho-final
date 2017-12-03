@@ -46,14 +46,48 @@ lista adicionaNaLista(item adicionado, lista listaCompras) { //adiciona item na 
 	lista novaLista = listaCompras;
 
 	string listaAntiga = listaCompras.elementos;
-	printw("A lista antiga era %s\n", listaAntiga.c_str());
 	string listaNova = listaAntiga + "," + adicionado.codBarras;
 	novaLista.elementos = listaNova;
+	novaLista.numElementos = novaLista.numElementos + 1;
 	return novaLista;
 } 
 
-void removeDaLista(string itemRemovido, lista listaCompras) {
+lista removeDaLista(string itemRemovido, lista listaCompras) {
 	//REMOVE DE listaCompras A PRIMEIRA OCORRENCIA DO PRODUTO nomeProduto (CASO EXISTAM 2 DO PRODUTO, MANTER UM DELES)
+ 	int j=0,Achouitem=0;
+ 	lista listaNova = listaCompras;
+ 	string listaAntiga = listaCompras.elementos;
+ 	string listatemporaria = "";
+ 	
+ 	
+	for (int i = 0; i < listaCompras.numElementos; i++) { //Para cada elemento da lista...
+		string barrasElementoAtual = listaCompras.elementos.substr((14*i),13);
+		item itemAtual = pesquisaItemPorCodBarras(barrasElementoAtual);
+		if (itemAtual.nomeItem == itemRemovido){
+			j =j + 1;Achouitem=1;
+		}
+		if (j != 1 && i!= listaCompras.numElementos-1)
+			listatemporaria = listatemporaria + barrasElementoAtual + ",";
+		
+		if (j !=1 && i == listaCompras.numElementos-1)
+			listatemporaria = listatemporaria + barrasElementoAtual;
+		if(Achouitem == 1)
+			j++;
+	
+	}	
+	if (Achouitem == 0){
+		printw("O produto nao existe na lista\n");
+		return listaNova;
+	}
+	printw("A lista antiga era %s\n", listaAntiga.c_str());
+	listaNova.elementos = listatemporaria;
+	printw("A lista nova eh %s\n", listatemporaria.c_str());
+	listaNova.numElementos = listaNova.numElementos - 1;
+		return listaNova;
+
+
+
+
 }
 
 lista recuperarListaPorCod(string codListaRecuperada){ //usuario inseriu Codigo da lista; retornar struct da lista
@@ -202,9 +236,11 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 			salvarLista(listaAtual);
 			break;
 		case '2':
+
+
 			printw("Insira o nome do produto a ser removido da lista\n");
 			getnstr(itemRemovido,SIZE_NAME_ITEM);
-			removeDaLista(itemRemovido, listaAtual);
+			listaAtual = removeDaLista(itemRemovido, listaAtual);
 			salvarLista(listaAtual);
 			break;
 		default:
