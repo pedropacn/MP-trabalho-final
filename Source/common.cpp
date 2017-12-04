@@ -34,23 +34,8 @@ void escreve (std::string texto1, std::string texto2, std::string texto3) {
     return;
 }
 
-std::string getstring() {
-    std::string input;
+int length(const char* input) { //retorna o tamanho de um const char*
 
-    // let the terminal do the line editing
-    nocbreak();
-    echo();
-
-    // this reads from buffer after <ENTER>, not "raw" 
-    // so any backspacing etc. has already been taken care of
-    int ch = getch();
-
-    while ( ch != '\n') {
-        input.push_back( ch );
-        ch = getch();
-    }
-
-    //restore your cbreak / echo settings here
-
-    return input;
+    std::string auxString = input; //const char* to String
+    return auxString.length(); //tamanho da string
 }

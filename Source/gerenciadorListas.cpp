@@ -19,9 +19,9 @@ using namespace std;
 
 void exibirLista(lista listaExibida) {
 	printw("------\n");
-	printw("Codigo da lista: %s\n", listaExibida.codLista.c_str());
-	printw("Codigo do usuário dono da lista: %s\n", listaExibida.codUsuario.c_str());
-	printw("Numero de elementos: %d\n", listaExibida.numElementos);
+	printw("Código da lista: %s\n", listaExibida.codLista.c_str());
+	printw("Código do usuário dono da lista: %s\n", listaExibida.codUsuario.c_str());
+	printw("Número de elementos: %d\n", listaExibida.numElementos);
 	printw("Código dos elementos: %s\n\n", listaExibida.elementos.c_str());
 	string barrasElementoAtual;
 
@@ -30,12 +30,12 @@ void exibirLista(lista listaExibida) {
 		item itemAtual = pesquisaItemPorCodBarras(barrasElementoAtual);
 		string nomeItem = itemAtual.nomeItem;
 		if (strlen(nomeItem.c_str()) > 0) {
-			printw("Nome do elemento %d: %s\n", i, nomeItem.c_str());
+			printw("Item %d: %s\n", i, nomeItem.c_str());
 			printw("Seu preço é: %s\n", itemAtual.preco.c_str());
-			printw("Codigo de barras é: %s\n\n", barrasElementoAtual.c_str());
+			printw("Seu código de barras é: %s\n\n", barrasElementoAtual.c_str());
 		}
 		else {
-			printw("Item da lista incoerente: Codigo de barras %s não está cadastrado no banco de itens\n", barrasElementoAtual.c_str());
+			printw("Item %d incoerente: Código de barras %s não está cadastrado\n", i, barrasElementoAtual.c_str());
 		}
 
 	}
@@ -78,7 +78,8 @@ lista removeDaLista(string itemRemovido, lista listaCompras) {
 	}	
 	listatemporaria1 = listatemporaria.substr(0, listatemporaria.size()-1);
 	if (Achouitem == 0){
-		printw("O produto nao existe na lista\n");
+		clear();
+		printw("O produto não existe na lista\n");
 		return listaNova;
 	}
 	//printw("A lista antiga era %s\n", listaAntiga.c_str());
@@ -86,10 +87,9 @@ lista removeDaLista(string itemRemovido, lista listaCompras) {
 	//printw("A lista nova eh %s\n", listatemporaria.c_str());
 	printw("Produto removido da lista");
 	listaNova.numElementos = listaNova.numElementos - 1;
-		return listaNova;
-
-
-
+	clear();
+	printw("Produto removido com sucesso\n");
+	return listaNova;
 
 }
 
@@ -160,7 +160,16 @@ void salvarLista(lista listaFinal) {
 
 void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 
+	string codListaString;
+	char codListaRecuperada[SIZE_ID_LISTA], numUsuario[SIZE_ID_LISTA];
+
 	clear();
+	printw("Insira o código do usuário dono da lista (1~99)\n");
+	getnstr(numUsuario,SIZE_ID_LISTA);
+	string numUsuarioString = string((2-length(numUsuario)), '0').append(numUsuario); //criar string a partir do const char* para usar compare
+
+	clear();
+	printw("Usuário inserido: %s\n\n", numUsuarioString.c_str());
 	printw("Insira a opção desejada\n\n");
 	printw("1. Criar nova lista \n");
 	printw("2. Editar lista existente \n");
@@ -168,32 +177,40 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 	char opcao = getch();
 
 	lista listaAtual;
-	listaAtual.codLista = ""; //inicializa com valor inválido
-	char codListaRecuperada[SIZE_ID_LISTA], numUsuario[SIZE_ID_LISTA]; //VERIFICAR COMO SAO LIDOS
-	string stringNumUsuario;
 
 	switch(opcao) {
 		case '1':
+			clear();
 			printw("Criando lista\n");
+			printw("Insira o código da nova lista (1~9999)\n");
+			getnstr(codListaRecuperada,SIZE_ID_LISTA);
+			codListaString = string((4-length(codListaRecuperada)), '0').append(codListaRecuperada); //concatenar zeros a esquerda se necessario
+			printw("Lista possui código: %s\n\n", codListaString.c_str());
+
+			if (recuperarListaPorCod(codListaString).numElementos != -1) {
+				clear();
+				printw("Já existe uma lista cadastrada com código %s\n\n", codListaRecuperada);
+				return;
+			}
+
+			listaAtual.numElementos = 0;
 			break;
 		case '2':
 			clear();
-			printw("Insira o código da lista (4 digitos)\n");
+			printw("Insira o código da lista (1~9999)\n");
 			getnstr(codListaRecuperada,SIZE_ID_LISTA);
-			listaAtual = recuperarListaPorCod(codListaRecuperada); //atualiza listaAtual para valor obtido de listas.txt
+			codListaString = string((4-length(codListaRecuperada)), '0').append(codListaRecuperada); //concatenar zeros a esquerda se necessario
+			listaAtual = recuperarListaPorCod(codListaString); //atualiza listaAtual para valor obtido de listas.txt
 			
-			if (listaAtual.codLista == "") { //lista inexistente
+			if (listaAtual.numElementos == -1) { //lista inexistente
 				clear();
-				printw("Lista de código %s não encontrada\n\n", codListaRecuperada);
+				printw("Lista de código %s não encontrada\n\n", codListaString.c_str());
 				return;
 			}
-			clear();
-			printw("Insira o código do usuário dono da lista (2 digitos)\n");
-			getnstr(numUsuario,SIZE_ID_LISTA);
-			stringNumUsuario = numUsuario; //criar string a partir do const char* para usar compare
+
 			clear();
 
-			if (stringNumUsuario.compare(listaAtual.codUsuario) != 0) {
+			if (numUsuarioString.compare(listaAtual.codUsuario) != 0) {
 				clear();
 				printw("Usuário inválido para a lista em questão\n\n");
 				return;
@@ -205,14 +222,14 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 			return;
 	}
 	
-	clear();
+	//clear();
 	//nesse ponto, listaAtual já contem a lista do cliente
-	exibirLista(listaAtual); //mostra a lista para o cliente
 
 	while (true) {
-		printw("\nInsira a opção desejada\n");
+		printw("Insira a opção desejada\n");
 		printw("1. Inserir produto \n");
 		printw("2. Remover produto \n");
+		printw("3. Exibir lista \n");
 		printw("Qualquer outro valor para encerrar\n");
 		opcao = getch();
 		char itemRemovido[SIZE_NAME_ITEM], itemAdicionado[SIZE_NAME_ITEM];
@@ -237,11 +254,12 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 				//printw("Lista de compras depois: %s\n", listaAtual.elementos.c_str());
 				break;
 			case '2':
-
-
 				printw("Insira o nome do produto a ser removido da lista\n");
 				getnstr(itemRemovido,SIZE_NAME_ITEM);
 				listaAtual = removeDaLista(itemRemovido, listaAtual);
+				break;
+			case '3':
+				exibirLista(listaAtual); //mostra a lista para o cliente
 				break;
 			default:
 				clear();
