@@ -29,9 +29,14 @@ void exibirLista(lista listaExibida) {
 		barrasElementoAtual = listaExibida.elementos.substr((14*i),13);
 		item itemAtual = pesquisaItemPorCodBarras(barrasElementoAtual);
 		string nomeItem = itemAtual.nomeItem;
-		printw("Nome do elemento %d: %s\n", i, nomeItem.c_str());
-		printw("Seu preço é: %s\n", itemAtual.preco.c_str());
-		printw("Codigo de barras é: %s\n\n", barrasElementoAtual.c_str());
+		if (strlen(nomeItem.c_str()) > 0) {
+			printw("Nome do elemento %d: %s\n", i, nomeItem.c_str());
+			printw("Seu preço é: %s\n", itemAtual.preco.c_str());
+			printw("Codigo de barras é: %s\n\n", barrasElementoAtual.c_str());
+		}
+		else {
+			printw("Item da lista incoerente: Codigo de barras %s não está cadastrado no banco de itens\n", barrasElementoAtual.c_str());
+		}
 
 	}
 
@@ -79,9 +84,9 @@ lista removeDaLista(string itemRemovido, lista listaCompras) {
 		printw("O produto nao existe na lista\n");
 		return listaNova;
 	}
-	printw("A lista antiga era %s\n", listaAntiga.c_str());
+	//printw("A lista antiga era %s\n", listaAntiga.c_str());
 	listaNova.elementos = listatemporaria;
-	printw("A lista nova eh %s\n", listatemporaria.c_str());
+	//printw("A lista nova eh %s\n", listatemporaria.c_str());
 	listaNova.numElementos = listaNova.numElementos - 1;
 		return listaNova;
 
@@ -191,7 +196,6 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 			clear();
 
 			if (stringNumUsuario.compare(listaAtual.codUsuario) != 0) {
-
 				clear();
 				printw("Usuário inválido para a lista em questão\n\n");
 				return;
@@ -207,46 +211,45 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 	//nesse ponto, listaAtual já contem a lista do cliente
 	exibirLista(listaAtual); //mostra a lista para o cliente
 
-	opcao = '0';
-	printw("\nInsira a opção desejada\n");
-	printw("1. Inserir produto \n");
-	printw("2. Remover produto \n");
-	printw("Qualquer outro valor para encerrar\n");
-	opcao = getch();
-	char itemRemovido[SIZE_NAME_ITEM], itemAdicionado[SIZE_NAME_ITEM];
-	item novoItem;
-	clear();
+	while (true) {
+		printw("\nInsira a opção desejada\n");
+		printw("1. Inserir produto \n");
+		printw("2. Remover produto \n");
+		printw("Qualquer outro valor para encerrar\n");
+		opcao = getch();
+		char itemRemovido[SIZE_NAME_ITEM], itemAdicionado[SIZE_NAME_ITEM];
+		item novoItem;
+		clear();
 
-	switch(opcao) {
-		case '1':
-			printw("Insira o nome do produto que deseja inserir\n");
-			getnstr(itemAdicionado,SIZE_NAME_ITEM);
-			novoItem = pesquisaItemPorNome (itemAdicionado);
+		switch(opcao) {
+			case '1':
+				printw("Insira o nome do produto que deseja inserir\n");
+				getnstr(itemAdicionado,SIZE_NAME_ITEM);
+				novoItem = pesquisaItemPorNome (itemAdicionado);
 
-			if (novoItem.preco.compare("0000.00") == 0) { //item não foi encontrado na pesquisa por nome
-				printw("Item de nome %s não foi encontrado no cadastro de itens\n", itemAdicionado);
-				salvarLista(listaAtual);
+				if (novoItem.preco.compare("0000.00") == 0) { //item não foi encontrado na pesquisa por nome
+					printw("Item de nome %s não foi encontrado no cadastro de itens\n", itemAdicionado);
+					printw("Utilize a opção 2 no menu principal para cadastrá-lo.");
+					salvarLista(listaAtual);
+					return;
+				}
+
+				//printw("Lista de compras antes: %s\n", listaAtual.elementos.c_str());
+				listaAtual = adicionaNaLista(novoItem, listaAtual); //atualiza lista com novo elemento
+				//printw("Lista de compras depois: %s\n", listaAtual.elementos.c_str());
+				break;
+			case '2':
+
+
+				printw("Insira o nome do produto a ser removido da lista\n");
+				getnstr(itemRemovido,SIZE_NAME_ITEM);
+				listaAtual = removeDaLista(itemRemovido, listaAtual);
+				break;
+			default:
+				clear();
+				salvarLista(listaAtual); //salva lista no arquivo apenas ao finalizar todas as iterações
 				return;
-			}
-
-			printw("Lista de compras antes: %s\n", listaAtual.elementos.c_str());
-			listaAtual = adicionaNaLista(novoItem, listaAtual); //atualiza lista com novo elemento
-			printw("Lista de compras depois: %s\n", listaAtual.elementos.c_str());
-
-			salvarLista(listaAtual);
-			break;
-		case '2':
-
-
-			printw("Insira o nome do produto a ser removido da lista\n");
-			getnstr(itemRemovido,SIZE_NAME_ITEM);
-			listaAtual = removeDaLista(itemRemovido, listaAtual);
-			salvarLista(listaAtual);
-			break;
-		default:
-			clear();
-			salvarLista(listaAtual);
-			return;
+		}
 	}
 
 	endwin();
