@@ -116,7 +116,7 @@ void salvarLista(lista listaFinal) {
 	
 	FILE* fpointer;
 	fpointer = fopen(LISTAS_FILE, "a");
-	fprintf(fpointer, "%s;%s;%03d;%s\n", listaFinal.codLista.c_str(), listaFinal.codUsuario.c_str(), listaFinal.numElementos, listaFinal.elementos.c_str());
+	fprintf(fpointer, "%04d;%02d;%03d;%s\n", atoi(listaFinal.codLista.c_str()), atoi(listaFinal.codUsuario.c_str()), listaFinal.numElementos, listaFinal.elementos.c_str());
 	fclose(fpointer);
 
 }
@@ -141,7 +141,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 			break;
 		case '2':
 			clear();
-			printw("Insira o código da lista\n");
+			printw("Insira o código da lista (4 digitos)\n");
 			getnstr(codListaRecuperada,SIZE_ID_LISTA);
 			listaAtual = recuperarListaPorCod(codListaRecuperada); //atualiza listaAtual para valor obtido de listas.txt
 			
@@ -151,7 +151,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 				return;
 			}
 			clear();
-			printw("Insira o código do usuário dono da lista\n");
+			printw("Insira o código do usuário dono da lista (2 digitos)\n");
 			getnstr(numUsuario,SIZE_ID_LISTA);
 			stringNumUsuario = numUsuario; //criar string a partir do const char* para usar compare
 			clear();
@@ -187,7 +187,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 		case '1':
 			printw("Insira o nome do produto que deseja inserir\n");
 			getnstr(itemAdicionado,SIZE_NAME_ITEM);
-			novoItem = pesquisaItemPorNome(itemAdicionado);
+			novoItem = pesquisaItemPorNome (itemAdicionado);
 
 			if (novoItem.preco.compare("0000.00") == 0) { //item não foi encontrado na pesquisa por nome
 				printw("Item de nome %s não foi encontrado no cadastro de itens\n", itemAdicionado);
@@ -232,7 +232,7 @@ void menu_compra() { //REALIZA COMPRA NO MERCADO
 		return;
 	}
 
-	printw("Insira o código do usuário\n");
+	printw("Insira o código do usuário (2 digitos)\n");
 	getnstr(numUsuario,SIZE_ID_LISTA);
 
 	if (listaAtual.codUsuario.compare(numUsuario)== 0) {

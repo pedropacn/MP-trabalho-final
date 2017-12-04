@@ -4,6 +4,7 @@
 #include <fstream> //manipular arquivos com getline
 #include <ncurses.h> //interface grafica
 #include <string.h> //manipulação de strings
+#include <stdlib.h> //atof
 
 #define SIZE_NAME_ITEM 200
 #define SIZE_CODBARRAS 13
@@ -12,7 +13,7 @@ static const char* ITENS_FILE = "itens.txt";
 
 using namespace std;
 
-bool insereItem(std::string name,std::string preco,std::string codBarras) {
+bool insereItem(string name, string preco, string codBarras) {
 	FILE* fp;
 	fp =fopen(ITENS_FILE,"a");
 	if (fp ==NULL){
@@ -22,17 +23,15 @@ bool insereItem(std::string name,std::string preco,std::string codBarras) {
 	const char* nome = name.c_str();
 	const char* codigobarra = codBarras.c_str();
 	const char* precos = preco.c_str();
+
+	double precoLido = atof(precos); //string to double
 	
 	if (strlen(codigobarra)!=13){
 		escreve("Codigo de barras deve ter 13 caracteres\n");
 		return false;
 	}
-	if (strlen(precos)!=7){
-		escreve("Precos deve ter 7 caracteres\n");
-		return false;
-	}
 
-	fprintf(fp,"%s;%s;%s\n",codigobarra,precos,nome);
+	fprintf(fp,"%s;%07.2f;%s\n",codigobarra,precoLido,nome);
 	fclose(fp);
 	return true;
 }
@@ -101,7 +100,7 @@ void menu_cadastrar_item() {
 	clear(); //limpar tela
 	
 	char codBarras[SIZE_CODBARRAS];
-	escreve("Insira o código de barras do Item(13 digitos):\n");
+	escreve("Insira o código de barras do item (13 digitos):\n");
 	getnstr(codBarras, SIZE_CODBARRAS); //METODO PARA LER STRING DO TECLADO
 	clear();
 	
@@ -116,7 +115,7 @@ void menu_cadastrar_item() {
 	escreve("Insira o nome do item: ");
 	char name[SIZE_NAME_ITEM];
 	getnstr(name, SIZE_NAME_ITEM);
-	escreve("Insira o preco do produto(7 digitos): ");
+	escreve("Insira o preco do produto: ");
 	char preco[SIZE_PRECO];
 	getnstr(preco, SIZE_PRECO);
 	clear();
