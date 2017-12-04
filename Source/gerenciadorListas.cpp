@@ -272,12 +272,20 @@ void menu_compra() { //REALIZA COMPRA NO MERCADO
 	printw("Insira o código do usuário (2 digitos)\n");
 	getnstr(numUsuario,SIZE_ID_LISTA);
 
-	if (listaAtual.codUsuario.compare(numUsuario)== 0) {
+	if (listaAtual.codUsuario.compare(numUsuario) != 0) {
 		clear();
 		printw("Usuário inválido para a lista em questão\n\n");
 		return;
 	}
-
+	string barrasElementoAtual;
+	float precototal = 0;
+	for (int i = 0; i < listaAtual.numElementos; i++) { //Para cada elemento da lista...
+		barrasElementoAtual = listaAtual.elementos.substr((14*i),13);
+		item itemAtual = pesquisaItemPorCodBarras(barrasElementoAtual);
+		float precoProduto = strtof((itemAtual.preco).c_str(),0);
+		precototal = precototal + precoProduto;
+	}
+	printw("O preco total da lista eh de:%.02f\n\n",precototal);
 	/*INFORMAR O CUSTO TOTAL DE listaAtual*/
 
 	endwin();
