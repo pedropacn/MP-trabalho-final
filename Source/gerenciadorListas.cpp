@@ -69,7 +69,8 @@ lista removeDaLista(string itemRemovido, lista listaCompras) {
 		string barrasElementoAtual = listaCompras.elementos.substr((14*i),13);
 		item itemAtual = pesquisaItemPorCodBarras(barrasElementoAtual);
 		if (itemAtual.nomeItem == itemRemovido){
-			j =j + 1;Achouitem=1;
+			j = j+1;
+			Achouitem=1;
 		}
 		if (j != 1)
 			listatemporaria = listatemporaria + barrasElementoAtual + ",";
@@ -121,12 +122,9 @@ lista recuperarListaPorCod(string codListaRecuperada){ //usuario inseriu Codigo 
 }
 
 /*Apaga a lista do arquivo .txt e retorna sua string correspondente*/
-string apagarLista(char* codListaRecuperada) {
+string apagarLista(string stringCodLista) {
 	
-	string line;
-	string listaRemovida;
-	string stringCodLista = codListaRecuperada; //linha de percorrimento do arquivo
-	
+	string line, listaRemovida;
 	ifstream arqListas;
 	ofstream arqTemp;
 	arqListas.open(LISTAS_FILE);
@@ -135,7 +133,7 @@ string apagarLista(char* codListaRecuperada) {
 	while (getline(arqListas,line)) { //para cada line do arquivo
 
 		if (stringCodLista.compare(line.substr(0,4)) == 0) { //se a lista atual é a que deve ser apagada
-			printw("Lista %s removida do arquivo\n", codListaRecuperada);
+			printw("Lista %s removida do arquivo\n", stringCodLista.c_str());
 			listaRemovida = line;
 		}
 		else {
@@ -215,7 +213,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 				printw("Usuário inválido para a lista em questão\n\n");
 				return;
 			}
-			apagarLista(codListaRecuperada); //apaga a lista atual; será adicionada posteriormente após as edições
+			apagarLista(codListaString); //apaga a lista atual; será adicionada posteriormente após as edições
 			break;
 		default:
 			clear();
@@ -247,6 +245,9 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 					printw("Utilize a opção 2 no menu principal para cadastrá-lo.");
 					salvarLista(listaAtual);
 					return;
+				} else {
+					clear();
+					printw("Item inserido com sucesso\n");
 				}
 
 				//printw("Lista de compras antes: %s\n", listaAtual.elementos.c_str());
