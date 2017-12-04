@@ -49,9 +49,12 @@ lista adicionaNaLista(item adicionado, lista listaCompras) { //adiciona item na 
 	//TODO: SE ITEM EXISTE ANTES DE SAIR ADICIONANDO
 
 	lista novaLista = listaCompras;
-
+	string listaNova;
 	string listaAntiga = listaCompras.elementos;
-	string listaNova = listaAntiga + "," + adicionado.codBarras;
+	if(novaLista.numElementos != 0)
+		listaNova = listaAntiga + "," + adicionado.codBarras;
+	else
+		listaNova = listaAntiga + adicionado.codBarras;
 	novaLista.elementos = listaNova;
 	novaLista.numElementos = novaLista.numElementos + 1;
 	return novaLista;
