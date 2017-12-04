@@ -49,9 +49,12 @@ lista adicionaNaLista(item adicionado, lista listaCompras) { //adiciona item na 
 	//TODO: SE ITEM EXISTE ANTES DE SAIR ADICIONANDO
 
 	lista novaLista = listaCompras;
-
+	string listaNova;
 	string listaAntiga = listaCompras.elementos;
-	string listaNova = listaAntiga + "," + adicionado.codBarras;
+	if(novaLista.numElementos != 0)
+		listaNova = listaAntiga + "," + adicionado.codBarras;
+	else
+		listaNova = listaAntiga + adicionado.codBarras;
 	novaLista.elementos = listaNova;
 	novaLista.numElementos = novaLista.numElementos + 1;
 	return novaLista;
@@ -291,12 +294,20 @@ void menu_compra() { //REALIZA COMPRA NO MERCADO
 	printw("Insira o código do usuário (2 digitos)\n");
 	getnstr(numUsuario,SIZE_ID_LISTA);
 
-	if (listaAtual.codUsuario.compare(numUsuario)== 0) {
+	if (listaAtual.codUsuario.compare(numUsuario) != 0) {
 		clear();
 		printw("Usuário inválido para a lista em questão\n\n");
 		return;
 	}
-
+	string barrasElementoAtual;
+	float precototal = 0;
+	for (int i = 0; i < listaAtual.numElementos; i++) { //Para cada elemento da lista...
+		barrasElementoAtual = listaAtual.elementos.substr((14*i),13);
+		item itemAtual = pesquisaItemPorCodBarras(barrasElementoAtual);
+		float precoProduto = strtof((itemAtual.preco).c_str(),0);
+		precototal = precototal + precoProduto;
+	}
+	printw("O preco total da lista eh de:%.02f\n\n",precototal);
 	/*INFORMAR O CUSTO TOTAL DE listaAtual*/
 
 	endwin();
