@@ -27,7 +27,7 @@ bool insereItem(string name, string preco, string codBarras) {
 	double precoLido = atof(precos); //string to double
 	
 	if (strlen(codigobarra)!=13){
-		escreve("Codigo de barras deve ter 13 caracteres\n");
+		escreve("Código de barras deve ter 13 caracteres\n");
 		return false;
 	}
 
@@ -89,8 +89,8 @@ item pesquisaItemPorNome(string nomeItem) {
 void exibirItem(item mostrar) {
 	printw("------\n");
 	printw("Nome do item: %s\n", mostrar.nomeItem.c_str());
-	printw("Codigo de barras: %s\n", mostrar.codBarras.c_str());
-	printw("Preco registrado: %s\n", mostrar.preco.c_str());
+	printw("Código de barras: %s\n", mostrar.codBarras.c_str());
+	printw("Preço registrado: %s\n", mostrar.preco.c_str());
 	printw("------\n");
 }
 
@@ -111,12 +111,13 @@ void menu_cadastrar_item() {
 	}
 
 	/*cadastrar item*/
-	escreve ("Item ",codBarras," nao esta cadastrado\n");
+	escreve ("Item ",codBarras," não está cadastrado\n");
+	char name[SIZE_NAME_ITEM], preco[SIZE_PRECO];
+	
 	escreve("Insira o nome do item: ");
-	char name[SIZE_NAME_ITEM];
 	getnstr(name, SIZE_NAME_ITEM);
-	escreve("Insira o preco do produto: ");
-	char preco[SIZE_PRECO];
+	
+	escreve("Insira o preço do produto: ");
 	getnstr(preco, SIZE_PRECO);
 	clear();
 
@@ -124,6 +125,6 @@ void menu_cadastrar_item() {
 	if (result)
 		escreve("Item ",name," inserido com sucesso\n"); //necessario pra mostrar variavel inserida pelo usuario
 	else
-		escreve("Insercao do item '",name,"' eh invalida\n"); //necessario pra mostrar variavel inserida pelo usuario
+		escreve("Inserção do item '",name,"' é inválida\n"); //necessario pra mostrar variavel inserida pelo usuario
 	endwin(); //finaliza o ncurses
 }
