@@ -195,6 +195,8 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 			}
 
 			listaAtual.numElementos = 0;
+			listaAtual.codLista = codListaString;
+			listaAtual.codUsuario = numUsuarioString;
 			break;
 		case '2':
 			clear();
