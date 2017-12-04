@@ -62,7 +62,7 @@ lista removeDaLista(string itemRemovido, lista listaCompras) {
  	int j=0,Achouitem=0;
  	lista listaNova = listaCompras;
  	string listaAntiga = listaCompras.elementos;
- 	string listatemporaria = "";
+ 	string listatemporaria = "",listatemporaria1;
  	
  	
 	for (int i = 0; i < listaCompras.numElementos; i++) { //Para cada elemento da lista...
@@ -71,22 +71,20 @@ lista removeDaLista(string itemRemovido, lista listaCompras) {
 		if (itemAtual.nomeItem == itemRemovido){
 			j =j + 1;Achouitem=1;
 		}
-		if (j != 1 && i!= listaCompras.numElementos-1)
+		if (j != 1)
 			listatemporaria = listatemporaria + barrasElementoAtual + ",";
-		
-		if (j !=1 && i == listaCompras.numElementos-1)
-			listatemporaria = listatemporaria + barrasElementoAtual;
 		if(Achouitem == 1)
 			j++;
-	
 	}	
+	listatemporaria1 = listatemporaria.substr(0, listatemporaria.size()-1);
 	if (Achouitem == 0){
 		printw("O produto nao existe na lista\n");
 		return listaNova;
 	}
 	//printw("A lista antiga era %s\n", listaAntiga.c_str());
-	listaNova.elementos = listatemporaria;
+	listaNova.elementos = listatemporaria1;
 	//printw("A lista nova eh %s\n", listatemporaria.c_str());
+	printw("Produto removido da lista");
 	listaNova.numElementos = listaNova.numElementos - 1;
 		return listaNova;
 
