@@ -8,5 +8,5 @@
 |02/11/2017|10 horas|Implementaçao funcao InsereItem(),pesquiseItemPorNome(),ApagarDaLista()|Foram feitas e testadas estas funçoes|
 |03/12/2017|4 horas|Implementação função RealizarCompras(),SalvarLista()|Foram feitas e testadas estas funçoes|
 |04/12/2017|4 horas|Correção de bugs no código|Foram feitos diversos testes para se encontrar falhas no codigo|
-|05/12/2017|3 horas|Reunião final|Foi feita uma reuniao final a respeito do trabalho|
+|05/12/2017|2 horas|Reunião final|Foi feita uma reuniao final a respeito do trabalho|
 
