@@ -1,0 +1,2 @@
+O primeiro módulo de testes implementado foi o gerenciadorListas_unittest.cpp. Entretanto, a execução do Gtest ocorrou com erros de conflito em relação às funções da biblioteca de interface gráfica <ncurses.h>. Em um primeiro momento, surgiu a suspeita do problema ser causado pela ausência da diretiva de compilação -lncurses. Entretanto, a adição da mesma não causou mudanças no resultado.
+Dada essa situação, não foram implementados outros módulos de teste ao longo do desenvolvimento por limitações encontradas na ferramenta.
