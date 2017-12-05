@@ -52,6 +52,7 @@ bool insereItem(string name, string preco, string codBarras) {
 	 */ 
 	if (strlen(codigobarra)!=13){
 		escreve("Código de barras deve ter 13 caracteres\n");
+		fclose(fp);
 		return false;
 	}
 

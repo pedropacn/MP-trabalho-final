@@ -18,9 +18,6 @@
  * @params str é a string no formato de string do C++.
  * @return Void. Retorna o ponteiro pra char por referência.
  */
-void stringToChar (char* cString, std::string str) {
-    strcpy(cString, str.c_str());
-}
 
 /**
  * @brief Mostrar na tela a variavel inserida pelo usuario. A função foi criada
