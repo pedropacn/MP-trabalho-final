@@ -171,7 +171,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 
 	clear();
 	printw("Usuário inserido: %s\n\n", numUsuarioString.c_str());
-	printw("Insira a opção desejada\n\n");
+	printw("Insira a opção desejada\n");
 	printw("1. Criar nova lista \n");
 	printw("2. Editar lista existente \n");
 	printw("Qualquer outro valor para encerrar\n");
@@ -246,8 +246,9 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 				novoItem = pesquisaItemPorNome (itemAdicionado);
 
 				if (novoItem.preco.compare("0000.00") == 0) { //item não foi encontrado na pesquisa por nome
+					clear();
 					printw("\nItem de nome %s não foi encontrado no cadastro de itens\n", itemAdicionado);
-					printw("Utilize a opção 2 no menu principal para cadastrá-lo.");
+					printw("Utilize a opção 2 no menu principal para cadastrá-lo.\n\n");
 					salvarLista(listaAtual);
 					return;
 				} else {
@@ -317,8 +318,25 @@ void menu_compra() { //REALIZA COMPRA NO MERCADO
 		float precoProduto = strtof((itemAtual.preco).c_str(),0);
 		precototal = precototal + precoProduto;
 	}
-	printw("O preco total da lista eh de:%.02f\n\n",precototal);
-	/*INFORMAR O CUSTO TOTAL DE listaAtual*/
+	printw("O preco total da lista é: %.02f\n\n", precototal);
+
+	printw("Insira a opção desejada\n");
+	printw("1. Manter lista no sistema\n");
+	printw("2. Remover lista do sistema\n");
+	printw("Qualquer outro valor para encerrar\n");
+	char opcao = getch();
+
+	switch(opcao) {
+		case '2':
+			apagarLista(listaAtual.codLista);
+			clear();
+			printw("Lista de código %s apagada com sucesso\n\n", codListaString.c_str());
+			return;
+		default:
+			clear();
+			break;
+	}
+
 
 	endwin();
 	return; //finalizar operação
