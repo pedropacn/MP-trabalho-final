@@ -282,27 +282,35 @@ void menu_compra() { //REALIZA COMPRA NO MERCADO
 	lista listaAtual;
 	listaAtual.codLista = ""; //inicializa com valor inválido
 	char codListaRecuperada[SIZE_ID_LISTA], numUsuario[SIZE_ID_LISTA]; //VERIFICAR COMO SAO LIDOS
+	string codListaString;
 
-	printw("\nInsira o código da lista cujas compras serão realizadas\n");
+	clear();
+	printw("Insira o código da lista cujas compras serão realizadas (1~9999)\n");
 	getnstr(codListaRecuperada,SIZE_ID_LISTA);
-	listaAtual = recuperarListaPorCod(codListaRecuperada); //atualiza listaAtual para valor obtido de listas.txt
+	codListaString = string((4-length(codListaRecuperada)), '0').append(codListaRecuperada); //concatenar zeros a esquerda se necessario
+	listaAtual = recuperarListaPorCod(codListaString); //atualiza listaAtual para valor obtido de listas.txt
+
+
 	
 	if (listaAtual.numElementos == -1) { //lista inexistente
 		clear();
-		printw("Lista de código %s não encontrada\n\n", codListaRecuperada);
+		printw("Lista de código %s não encontrada\n\n", codListaString.c_str());
 		return;
 	}
 
-	printw("Insira o código do usuário (2 digitos)\n");
+	clear();
+	printw("Insira o código do usuário (1~99)\n");
 	getnstr(numUsuario,SIZE_ID_LISTA);
+	string numUsuarioString = string((2-length(numUsuario)), '0').append(numUsuario); //criar string a partir do const char* para usar compare
 
-	if (listaAtual.codUsuario.compare(numUsuario) != 0) {
+	if (listaAtual.codUsuario.compare(numUsuarioString) != 0) {
 		clear();
-		printw("Usuário inválido para a lista em questão\n\n");
+		printw("Usuário %s inválido para a lista em questão\n\n", numUsuarioString.c_str());
 		return;
 	}
 	string barrasElementoAtual;
 	float precototal = 0;
+	clear();
 	for (int i = 0; i < listaAtual.numElementos; i++) { //Para cada elemento da lista...
 		barrasElementoAtual = listaAtual.elementos.substr((14*i),13);
 		item itemAtual = pesquisaItemPorCodBarras(barrasElementoAtual);
