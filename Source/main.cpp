@@ -1,20 +1,31 @@
+/** @file */
+/**
+ * Módulo principal.
+ */
+
+/**
+ * Bibliotecas utilizadas do C.
+ */
 #include "gerenciadorItens.h"
 #include "gerenciadorListas.h"
 #include <ncurses.h>
 
-//MODULARIZACAO: PROGRAMA EM MULTICODIGOS
-//PROGRAMA PRINCIPAL
-
+/**
+ * Namespace padrao do C++.
+ */
 using namespace std;
 
 int main (int argc, char* argv[]) {
 
-	initscr(); //inicializa o ncurses
-	keypad(stdscr, TRUE); //habilita backspace, delete, arrows
-	
+	initscr(); ///< Inicializa o ncurses.
+	keypad(stdscr, TRUE); ///< Habilita backspace, delete, arrows.
+
+	/**
+ 	 * loop: infinito.
+ 	 */
 	do {
-		//move(2,0);
-		//refresh();
+		//move(2,0); #debug
+		//refresh(); #debug
 		printw("MENU PRINCIPAL\n");
 		printw("Insira a opção desejada\n");
 		printw("1. Criar/Editar lista\n");
@@ -23,27 +34,27 @@ int main (int argc, char* argv[]) {
 		printw("0. Encerrar programa\n\n");
 		
 		char opcao = getch();
-		//printw("\n\n");
+		//printw("\n\n"); #debug
 
 		switch(opcao) {
 			case '1':
-				//cout << "Gerenciando lista\n";
+				//cout << "Gerenciando lista\n"; //debug 
 				menu_lista();
 				break;
 
 			case '2':
-				//cout << "Cadastrar objeto\n";
+				//cout << "Cadastrar objeto\n"; //debug
 				menu_cadastrar_item();
 				break;
 
 			case '3':
-				//cout << "Cadastrar objeto\n";
+				//cout << "Cadastrar objeto\n"; //debug
 				menu_compra();
 				break;
 
 			case '0':
-				endwin(); //finaliza o ncurses
-				return 0; //finaliza o programa
+				endwin(); ///< Finaliza o ncurses.
+				return 0; ///< Finaliza o programa.
 				break;
 
 			default:
@@ -51,6 +62,6 @@ int main (int argc, char* argv[]) {
 				clear();
 				break;
 		}
-	} while (true); //executa eternamente
+	} while (true);
 	return 0;
 }

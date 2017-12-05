@@ -118,9 +118,9 @@ lista removeDaLista(string itemRemovido, lista listaCompras) {
 		printw("O produto não existe na lista\n");
 		return listaNova;
 	}
-	//printw("A lista antiga era %s\n", listaAntiga.c_str()); #debug
+	//printw("A lista antiga era %s\n", listaAntiga.c_str()); //debug
 	listaNova.elementos = listatemporaria1;
-	//printw("A lista nova eh %s\n", listatemporaria.c_str()); #debug
+	//printw("A lista nova eh %s\n", listatemporaria.c_str()); //debug
 	printw("Produto removido da lista");
 	listaNova.numElementos = listaNova.numElementos - 1;
 	clear();
@@ -352,14 +352,14 @@ void menu_lista() {
 					printw("Item inserido com sucesso\n");
 				}
 
-				//printw("Lista de compras antes: %s\n", listaAtual.elementos.c_str()); #debug
+				//printw("Lista de compras antes: %s\n", listaAtual.elementos.c_str()); //debug
 
 				/**
 				 * Atualiza lista com novo elemento.
 				 */
 				listaAtual = adicionaNaLista(novoItem, listaAtual);
 
-				//printw("Lista de compras depois: %s\n", listaAtual.elementos.c_str()); #debug
+				//printw("Lista de compras depois: %s\n", listaAtual.elementos.c_str()); //debug
 				break;
 			case '2':
 				printw("Insira o nome do produto a ser removido da lista\n");
