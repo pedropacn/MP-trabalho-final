@@ -45,11 +45,8 @@ void exibirLista(lista listaExibida) {
 	for (int i = 0; i < listaExibida.numElementos; i++) { //Para cada elemento da lista...
 		barrasElementoAtual = listaExibida.elementos.substr((14*i),13);
 		item itemAtual = pesquisaItemPorCodBarras(barrasElementoAtual);
-		string nomeItem = itemAtual.nomeItem;
 		if (strlen(nomeItem.c_str()) > 0) {
-			printw("Item %d: %s\n", i, nomeItem.c_str());
-			printw("Seu preço é: %s\n", itemAtual.preco.c_str());
-			printw("Seu código de barras é: %s\n\n", barrasElementoAtual.c_str());
+			exibirItem(itemAtual);
 		}
 		else {
 			printw("Item %d incoerente: Código de barras %s não está cadastrado\n", i, barrasElementoAtual.c_str());
@@ -94,7 +91,6 @@ lista adicionaNaLista(item adicionado, lista listaCompras) {
 lista removeDaLista(string itemRemovido, lista listaCompras) {
  	int j=0,Achouitem=0;
  	lista listaNova = listaCompras;
- 	string listaAntiga = listaCompras.elementos;
  	string listatemporaria = "",listatemporaria1;
 
 	/**
@@ -118,7 +114,6 @@ lista removeDaLista(string itemRemovido, lista listaCompras) {
 		printw("O produto não existe na lista\n");
 		return listaNova;
 	}
-	//printw("A lista antiga era %s\n", listaAntiga.c_str()); //debug
 	listaNova.elementos = listatemporaria1;
 	//printw("A lista nova eh %s\n", listatemporaria.c_str()); //debug
 	printw("Produto removido da lista");
