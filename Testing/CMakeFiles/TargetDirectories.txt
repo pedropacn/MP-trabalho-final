@@ -1,3 +1,0 @@
-/home/mustella/Repository/MP_Compras/MP-trabalho-final/Testing/CMakeFiles/edit_cache.dir
-/home/mustella/Repository/MP_Compras/MP-trabalho-final/Testing/CMakeFiles/rebuild_cache.dir
-/home/mustella/Repository/MP_Compras/MP-trabalho-final/Testing/CMakeFiles/runTests.dir
