@@ -1,0 +1,142 @@
+\hypertarget{gerenciadorItens_8cpp}{}\section{gerenciador\+Itens.\+cpp File Reference}
+\label{gerenciadorItens_8cpp}\index{gerenciador\+Itens.\+cpp@{gerenciador\+Itens.\+cpp}}
+{\ttfamily \#include \char`\"{}item.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$ncurses.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+Include dependency graph for gerenciador\+Itens.\+cpp\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gerenciadorItens_8cpp_a69f2ff22ecdefa469701138efba0b5c5}{S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM}~200
+\item 
+\#define {\bfseries S\+I\+Z\+E\+\_\+\+C\+O\+D\+B\+A\+R\+R\+AS}~13\hypertarget{gerenciadorItens_8cpp_a90157bd1b4c7dc00daba5dbe837df0ee}{}\label{gerenciadorItens_8cpp_a90157bd1b4c7dc00daba5dbe837df0ee}
+
+\item 
+\#define {\bfseries S\+I\+Z\+E\+\_\+\+P\+R\+E\+CO}~7\hypertarget{gerenciadorItens_8cpp_a873d730ed5b8001378aeef55ce3616e1}{}\label{gerenciadorItens_8cpp_a873d730ed5b8001378aeef55ce3616e1}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+bool \hyperlink{gerenciadorItens_8cpp_ad79eb085226a3bda16a5731d1b16cf06}{insere\+Item} (string name, string preco, string cod\+Barras)
+\begin{DoxyCompactList}\small\item\em Função que insere um item na lista da compras.  name eh o nome do item a ser inserido.  preco eh o preco do item a ser inserido.  cod\+Barras eh o codigo de barras do item a ser inserido. \end{DoxyCompactList}\item 
+\hyperlink{structitem}{item} \hyperlink{gerenciadorItens_8cpp_aac45bf81b0f63cdcf8d14fa51621c3c3}{pesquisa\+Item\+Por\+Cod\+Barras} (string cod\+Barras)
+\begin{DoxyCompactList}\small\item\em Função que realiza a pesquisa do item pelo seu codigo de barras e retorna o item encocntrado.  cod\+Barras é a entrada a ser analisada. \end{DoxyCompactList}\item 
+\hyperlink{structitem}{item} \hyperlink{gerenciadorItens_8cpp_afe41cd5d3d38f07831ef7994f10e676b}{pesquisa\+Item\+Por\+Nome} (string nome\+Item)
+\begin{DoxyCompactList}\small\item\em Função que pesquisa o item pelo seu nome e retorna o item encontrado.  nome\+Item é o nome do item a ser buscado. \end{DoxyCompactList}\item 
+void \hyperlink{gerenciadorItens_8cpp_af1c5013098a414498caf033dc4fd232d}{exibir\+Item} (\hyperlink{structitem}{item} mostrar)
+\begin{DoxyCompactList}\small\item\em Função da interface que exibe as prorpriedades de cada item.  mostrar é o objeto item a ser mostrado. \end{DoxyCompactList}\item 
+void \hyperlink{gerenciadorItens_8cpp_a530b8b429a4817cbe0c5c98a259aa977}{menu\+\_\+cadastrar\+\_\+item} ()
+\begin{DoxyCompactList}\small\item\em Função da interface que exibe o menu do item. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{gerenciador\+Itens.\+cpp@{gerenciador\+Itens.\+cpp}!S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM@{S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM}}
+\index{S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM@{S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM}!gerenciador\+Itens.\+cpp@{gerenciador\+Itens.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM}{SIZE_NAME_ITEM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM~200}\hypertarget{gerenciadorItens_8cpp_a69f2ff22ecdefa469701138efba0b5c5}{}\label{gerenciadorItens_8cpp_a69f2ff22ecdefa469701138efba0b5c5}
+Módulo de funções de gerenciamento dos itens por lista. Bibliotecas utilizadas do C e C++.$<$ manipular arquivos com a funcao getline(). $<$ interface grafica. manipulação de strings. para utilizar a função atof(). Define M\+A\+C\+R\+OS de tamanhos para o sistema e uma variavel global. 
+
+\subsection{Function Documentation}
+\index{gerenciador\+Itens.\+cpp@{gerenciador\+Itens.\+cpp}!exibir\+Item@{exibir\+Item}}
+\index{exibir\+Item@{exibir\+Item}!gerenciador\+Itens.\+cpp@{gerenciador\+Itens.\+cpp}}
+\subsubsection[{\texorpdfstring{exibir\+Item(item mostrar)}{exibirItem(item mostrar)}}]{\setlength{\rightskip}{0pt plus 5cm}void exibir\+Item (
+\begin{DoxyParamCaption}
+\item[{{\bf item}}]{mostrar}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorItens_8cpp_af1c5013098a414498caf033dc4fd232d}{}\label{gerenciadorItens_8cpp_af1c5013098a414498caf033dc4fd232d}
+
+
+Função da interface que exibe as prorpriedades de cada item.  mostrar é o objeto item a ser mostrado. 
+
+\begin{DoxyReturn}{Returns}
+void. Printa na tela as propriedades. 
+\end{DoxyReturn}
+\index{gerenciador\+Itens.\+cpp@{gerenciador\+Itens.\+cpp}!insere\+Item@{insere\+Item}}
+\index{insere\+Item@{insere\+Item}!gerenciador\+Itens.\+cpp@{gerenciador\+Itens.\+cpp}}
+\subsubsection[{\texorpdfstring{insere\+Item(string name, string preco, string cod\+Barras)}{insereItem(string name, string preco, string codBarras)}}]{\setlength{\rightskip}{0pt plus 5cm}bool insere\+Item (
+\begin{DoxyParamCaption}
+\item[{string}]{name, }
+\item[{string}]{preco, }
+\item[{string}]{cod\+Barras}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorItens_8cpp_ad79eb085226a3bda16a5731d1b16cf06}{}\label{gerenciadorItens_8cpp_ad79eb085226a3bda16a5731d1b16cf06}
+
+
+Função que insere um item na lista da compras.  name eh o nome do item a ser inserido.  preco eh o preco do item a ser inserido.  cod\+Barras eh o codigo de barras do item a ser inserido. 
+
+\begin{DoxyReturn}{Returns}
+true se o item foi inserido com sucesso, falso caso contrário. 
+\end{DoxyReturn}
+$<$ abre o banco de dados
+
+$<$ converte o preco de string para numero
+
+conditional\+: Checa se o codigo de barras inserido eh valido true =$>$ printa mensagem de erro e sai da funcao false =$>$ nada acontece\index{gerenciador\+Itens.\+cpp@{gerenciador\+Itens.\+cpp}!menu\+\_\+cadastrar\+\_\+item@{menu\+\_\+cadastrar\+\_\+item}}
+\index{menu\+\_\+cadastrar\+\_\+item@{menu\+\_\+cadastrar\+\_\+item}!gerenciador\+Itens.\+cpp@{gerenciador\+Itens.\+cpp}}
+\subsubsection[{\texorpdfstring{menu\+\_\+cadastrar\+\_\+item()}{menu_cadastrar_item()}}]{\setlength{\rightskip}{0pt plus 5cm}void menu\+\_\+cadastrar\+\_\+item (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorItens_8cpp_a530b8b429a4817cbe0c5c98a259aa977}{}\label{gerenciadorItens_8cpp_a530b8b429a4817cbe0c5c98a259aa977}
+
+
+Função da interface que exibe o menu do item. 
+
+usuário selecionou opção de Inserir item
+
+\begin{DoxyReturn}{Returns}
+void. Printa na tela o menu. 
+\end{DoxyReturn}
+$<$ limpa a tela
+
+$<$ metodo para ler string do teclado.
+
+Retornar o Item, caso exista.
+
+conditional\+: Checa se o Item não foi encontrado true =$>$ printa mensagem de aviso e sai da funcao. false =$>$ nada acontece.
+
+Cadastrar item.
+
+conditional\+: Checa se o item foi inserido corretamente true =$>$ printa mensagem de que deu tudo certo false =$>$ printa mensagem de erro
+
+$<$ finaliza o ncurses \index{gerenciador\+Itens.\+cpp@{gerenciador\+Itens.\+cpp}!pesquisa\+Item\+Por\+Cod\+Barras@{pesquisa\+Item\+Por\+Cod\+Barras}}
+\index{pesquisa\+Item\+Por\+Cod\+Barras@{pesquisa\+Item\+Por\+Cod\+Barras}!gerenciador\+Itens.\+cpp@{gerenciador\+Itens.\+cpp}}
+\subsubsection[{\texorpdfstring{pesquisa\+Item\+Por\+Cod\+Barras(string cod\+Barras)}{pesquisaItemPorCodBarras(string codBarras)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf item} pesquisa\+Item\+Por\+Cod\+Barras (
+\begin{DoxyParamCaption}
+\item[{string}]{cod\+Barras}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorItens_8cpp_aac45bf81b0f63cdcf8d14fa51621c3c3}{}\label{gerenciadorItens_8cpp_aac45bf81b0f63cdcf8d14fa51621c3c3}
+
+
+Função que realiza a pesquisa do item pelo seu codigo de barras e retorna o item encocntrado.  cod\+Barras é a entrada a ser analisada. 
+
+\begin{DoxyReturn}{Returns}
+item encontrado. 
+\end{DoxyReturn}
+$<$ inicializar struct com valores nulos.
+
+loop\+: percorre todas as linhas do banco de dados.
+
+conditional\+: Checa se o codigo de barras do banco de dados é o mesmo do argumento true =$>$ armazena o item e quebra o loop false =$>$ nada acontece\index{gerenciador\+Itens.\+cpp@{gerenciador\+Itens.\+cpp}!pesquisa\+Item\+Por\+Nome@{pesquisa\+Item\+Por\+Nome}}
+\index{pesquisa\+Item\+Por\+Nome@{pesquisa\+Item\+Por\+Nome}!gerenciador\+Itens.\+cpp@{gerenciador\+Itens.\+cpp}}
+\subsubsection[{\texorpdfstring{pesquisa\+Item\+Por\+Nome(string nome\+Item)}{pesquisaItemPorNome(string nomeItem)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf item} pesquisa\+Item\+Por\+Nome (
+\begin{DoxyParamCaption}
+\item[{string}]{nome\+Item}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorItens_8cpp_afe41cd5d3d38f07831ef7994f10e676b}{}\label{gerenciadorItens_8cpp_afe41cd5d3d38f07831ef7994f10e676b}
+
+
+Função que pesquisa o item pelo seu nome e retorna o item encontrado.  nome\+Item é o nome do item a ser buscado. 
+
+\begin{DoxyReturn}{Returns}
+item encontrado. 
+\end{DoxyReturn}
+$<$ inicializar struct com valores nulos.
+
+$<$ loop para cada linha.
+
+conditional\+: Checa se o nome do banco de dados é o mesmo do argumento true =$>$ armazena o item e quebra o loop false =$>$ nada acontece

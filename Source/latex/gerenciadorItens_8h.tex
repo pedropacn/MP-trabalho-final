@@ -1,0 +1,74 @@
+\hypertarget{gerenciadorItens_8h}{}\section{gerenciador\+Itens.\+h File Reference}
+\label{gerenciadorItens_8h}\index{gerenciador\+Itens.\+h@{gerenciador\+Itens.\+h}}
+{\ttfamily \#include \char`\"{}item.\+h\char`\"{}}\\*
+Include dependency graph for gerenciador\+Itens.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{gerenciadorItens_8h_a530b8b429a4817cbe0c5c98a259aa977}{menu\+\_\+cadastrar\+\_\+item} ()
+\begin{DoxyCompactList}\small\item\em usuário selecionou opção de Inserir item \end{DoxyCompactList}\item 
+void \hyperlink{gerenciadorItens_8h_af1c5013098a414498caf033dc4fd232d}{exibir\+Item} (\hyperlink{structitem}{item} mostrar)
+\begin{DoxyCompactList}\small\item\em Função da interface que exibe as prorpriedades de cada item.  mostrar é o objeto item a ser mostrado. \end{DoxyCompactList}\item 
+\hyperlink{structitem}{item} \hyperlink{gerenciadorItens_8h_ab472868ddb09103b785bd11ff9654f10}{cria\+Item} ()\hypertarget{gerenciadorItens_8h_ab472868ddb09103b785bd11ff9654f10}{}\label{gerenciadorItens_8h_ab472868ddb09103b785bd11ff9654f10}
+
+\begin{DoxyCompactList}\small\item\em inicializa item \end{DoxyCompactList}\item 
+bool \hyperlink{gerenciadorItens_8h_a076a04239d39fb819d7a152779b48213}{insere\+Item} (std\+::string name, std\+::string preco, std\+::string cod\+Barras)\hypertarget{gerenciadorItens_8h_a076a04239d39fb819d7a152779b48213}{}\label{gerenciadorItens_8h_a076a04239d39fb819d7a152779b48213}
+
+\begin{DoxyCompactList}\small\item\em insere item no arquivo itens.\+txt \end{DoxyCompactList}\item 
+\hyperlink{structitem}{item} \hyperlink{gerenciadorItens_8h_a152beeacf55cec21113914d79244c156}{pesquisa\+Item\+Por\+Cod\+Barras} (std\+::string cod\+Barras)\hypertarget{gerenciadorItens_8h_a152beeacf55cec21113914d79244c156}{}\label{gerenciadorItens_8h_a152beeacf55cec21113914d79244c156}
+
+\begin{DoxyCompactList}\small\item\em retorna item caso o encontre no arquivo; retorna encontrado.\+cod\+Barras = 0 em caso contrário \end{DoxyCompactList}\item 
+\hyperlink{structitem}{item} \hyperlink{gerenciadorItens_8h_aeecbcb430eb3e974012565d50bb3885c}{pesquisa\+Item\+Por\+Nome} (std\+::string nome\+Item)\hypertarget{gerenciadorItens_8h_aeecbcb430eb3e974012565d50bb3885c}{}\label{gerenciadorItens_8h_aeecbcb430eb3e974012565d50bb3885c}
+
+\begin{DoxyCompactList}\small\item\em retorna item caso o encontre no arquivo; retorna encontrado.\+cod\+Barras = 0 em caso contrário \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{gerenciador\+Itens.\+h@{gerenciador\+Itens.\+h}!exibir\+Item@{exibir\+Item}}
+\index{exibir\+Item@{exibir\+Item}!gerenciador\+Itens.\+h@{gerenciador\+Itens.\+h}}
+\subsubsection[{\texorpdfstring{exibir\+Item(item mostrar)}{exibirItem(item mostrar)}}]{\setlength{\rightskip}{0pt plus 5cm}void exibir\+Item (
+\begin{DoxyParamCaption}
+\item[{{\bf item}}]{mostrar}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorItens_8h_af1c5013098a414498caf033dc4fd232d}{}\label{gerenciadorItens_8h_af1c5013098a414498caf033dc4fd232d}
+
+
+Função da interface que exibe as prorpriedades de cada item.  mostrar é o objeto item a ser mostrado. 
+
+\begin{DoxyReturn}{Returns}
+void. Printa na tela as propriedades. 
+\end{DoxyReturn}
+\index{gerenciador\+Itens.\+h@{gerenciador\+Itens.\+h}!menu\+\_\+cadastrar\+\_\+item@{menu\+\_\+cadastrar\+\_\+item}}
+\index{menu\+\_\+cadastrar\+\_\+item@{menu\+\_\+cadastrar\+\_\+item}!gerenciador\+Itens.\+h@{gerenciador\+Itens.\+h}}
+\subsubsection[{\texorpdfstring{menu\+\_\+cadastrar\+\_\+item()}{menu_cadastrar_item()}}]{\setlength{\rightskip}{0pt plus 5cm}void menu\+\_\+cadastrar\+\_\+item (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorItens_8h_a530b8b429a4817cbe0c5c98a259aa977}{}\label{gerenciadorItens_8h_a530b8b429a4817cbe0c5c98a259aa977}
+
+
+usuário selecionou opção de Inserir item 
+
+Arquivo com conjunto de headers para o modulo de gerenciamento de itens
+
+usuário selecionou opção de Inserir item
+
+\begin{DoxyReturn}{Returns}
+void. Printa na tela o menu. 
+\end{DoxyReturn}
+$<$ limpa a tela
+
+$<$ metodo para ler string do teclado.
+
+Retornar o Item, caso exista.
+
+conditional\+: Checa se o Item não foi encontrado true =$>$ printa mensagem de aviso e sai da funcao. false =$>$ nada acontece.
+
+Cadastrar item.
+
+conditional\+: Checa se o item foi inserido corretamente true =$>$ printa mensagem de que deu tudo certo false =$>$ printa mensagem de erro
+
+$<$ finaliza o ncurses 

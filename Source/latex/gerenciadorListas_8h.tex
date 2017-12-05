@@ -1,0 +1,153 @@
+\hypertarget{gerenciadorListas_8h}{}\section{gerenciador\+Listas.\+h File Reference}
+\label{gerenciadorListas_8h}\index{gerenciador\+Listas.\+h@{gerenciador\+Listas.\+h}}
+{\ttfamily \#include \char`\"{}lista.\+h\char`\"{}}\\*
+Include dependency graph for gerenciador\+Listas.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{gerenciadorListas_8h_a1924d980a2ee225d6a41651c26c06226}{menu\+\_\+lista} ()
+\begin{DoxyCompactList}\small\item\em usuário selecionou opção de Criar/\+Editar Lista. \end{DoxyCompactList}\item 
+void \hyperlink{gerenciadorListas_8h_a4490c10216a66184c473092ef8f32b36}{menu\+\_\+compra} ()
+\begin{DoxyCompactList}\small\item\em Mostra o menu de compras no supermercado. \end{DoxyCompactList}\item 
+void \hyperlink{gerenciadorListas_8h_a25bd5a315da243a42c9354b08d0ee6d1}{cria\+Lista} (\hyperlink{structitem}{item} adicionado, \hyperlink{structlista}{lista} lista\+Compras)\hypertarget{gerenciadorListas_8h_a25bd5a315da243a42c9354b08d0ee6d1}{}\label{gerenciadorListas_8h_a25bd5a315da243a42c9354b08d0ee6d1}
+
+\begin{DoxyCompactList}\small\item\em adiciona item na lista. \end{DoxyCompactList}\item 
+\hyperlink{structlista}{lista} \hyperlink{gerenciadorListas_8h_a4a5cacbd6c62d639a8c793b7b20cfc99}{adiciona\+Na\+Lista} (\hyperlink{structitem}{item} adicionado, \hyperlink{structlista}{lista} lista\+Compras)
+\begin{DoxyCompactList}\small\item\em adiciona item na lista. \end{DoxyCompactList}\item 
+void \hyperlink{gerenciadorListas_8h_a773b32448bf332019152d2cf566b2914}{remove\+Da\+Lista} (std\+::string item\+Removido, \hyperlink{structlista}{lista} lista\+Compras)\hypertarget{gerenciadorListas_8h_a773b32448bf332019152d2cf566b2914}{}\label{gerenciadorListas_8h_a773b32448bf332019152d2cf566b2914}
+
+\begin{DoxyCompactList}\small\item\em remove item da lista. \end{DoxyCompactList}\item 
+\hyperlink{structlista}{lista} \hyperlink{gerenciadorListas_8h_a2b7fdc2569ba4771d5edcaff58c91097}{recuperar\+Lista\+Por\+Cod} (std\+::string cod\+Lista\+Recuperada)\hypertarget{gerenciadorListas_8h_a2b7fdc2569ba4771d5edcaff58c91097}{}\label{gerenciadorListas_8h_a2b7fdc2569ba4771d5edcaff58c91097}
+
+\begin{DoxyCompactList}\small\item\em usuario inseriu Codigo da lista; retornar struct da lista. \end{DoxyCompactList}\item 
+bool \hyperlink{gerenciadorListas_8h_a20096482a7473122e894c5baa4ba9821}{possui\+Acesso\+Lista} (std\+::string cod\+Usuario, \hyperlink{structlista}{lista} lista\+Compras)\hypertarget{gerenciadorListas_8h_a20096482a7473122e894c5baa4ba9821}{}\label{gerenciadorListas_8h_a20096482a7473122e894c5baa4ba9821}
+
+\begin{DoxyCompactList}\small\item\em saber se o cod\+Usuario eh dono da lista. \end{DoxyCompactList}\item 
+void \hyperlink{gerenciadorListas_8h_aeab4e3c278f3a6dc6e87ed04df7e4103}{exibir\+Lista} (\hyperlink{structlista}{lista} lista\+Exibida)
+\begin{DoxyCompactList}\small\item\em exibe \textquotesingle{}lista\+Atual\textquotesingle{} na tela. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{gerenciadorListas_8h_a63fef28b4f08af126128db5e64028e89}{apagar\+Lista} (std\+::string string\+Cod\+Lista)\hypertarget{gerenciadorListas_8h_a63fef28b4f08af126128db5e64028e89}{}\label{gerenciadorListas_8h_a63fef28b4f08af126128db5e64028e89}
+
+\begin{DoxyCompactList}\small\item\em apaga a lista do arquivo e retorna sua sting correspondente. \end{DoxyCompactList}\item 
+void \hyperlink{gerenciadorListas_8h_a4a8488f8f94f5162cc6f447d823f3459}{salvar\+Lista} (\hyperlink{structlista}{lista} lista\+Final)
+\begin{DoxyCompactList}\small\item\em Função que atualiza os dados da lista no banco de dados.  lista\+Final é o objeto lista a ser atualizado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{gerenciador\+Listas.\+h@{gerenciador\+Listas.\+h}!adiciona\+Na\+Lista@{adiciona\+Na\+Lista}}
+\index{adiciona\+Na\+Lista@{adiciona\+Na\+Lista}!gerenciador\+Listas.\+h@{gerenciador\+Listas.\+h}}
+\subsubsection[{\texorpdfstring{adiciona\+Na\+Lista(item adicionado, lista lista\+Compras)}{adicionaNaLista(item adicionado, lista listaCompras)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lista} adiciona\+Na\+Lista (
+\begin{DoxyParamCaption}
+\item[{{\bf item}}]{adicionado, }
+\item[{{\bf lista}}]{lista\+Compras}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorListas_8h_a4a5cacbd6c62d639a8c793b7b20cfc99}{}\label{gerenciadorListas_8h_a4a5cacbd6c62d639a8c793b7b20cfc99}
+
+
+adiciona item na lista. 
+
+adiciona item na lista.
+
+\begin{DoxyReturn}{Returns}
+lista atualizada. 
+\end{DoxyReturn}
+T\+O\+DO\+: SE I\+T\+EM E\+X\+I\+S\+TE A\+N\+T\+ES DE S\+A\+IR A\+D\+I\+C\+I\+O\+N\+A\+N\+DO\index{gerenciador\+Listas.\+h@{gerenciador\+Listas.\+h}!exibir\+Lista@{exibir\+Lista}}
+\index{exibir\+Lista@{exibir\+Lista}!gerenciador\+Listas.\+h@{gerenciador\+Listas.\+h}}
+\subsubsection[{\texorpdfstring{exibir\+Lista(lista lista\+Exibida)}{exibirLista(lista listaExibida)}}]{\setlength{\rightskip}{0pt plus 5cm}void exibir\+Lista (
+\begin{DoxyParamCaption}
+\item[{{\bf lista}}]{lista\+Exibida}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorListas_8h_aeab4e3c278f3a6dc6e87ed04df7e4103}{}\label{gerenciadorListas_8h_aeab4e3c278f3a6dc6e87ed04df7e4103}
+
+
+exibe \textquotesingle{}lista\+Atual\textquotesingle{} na tela. 
+
+exibe \textquotesingle{}lista\+Atual\textquotesingle{} na tela.
+
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{gerenciador\+Listas.\+h@{gerenciador\+Listas.\+h}!menu\+\_\+compra@{menu\+\_\+compra}}
+\index{menu\+\_\+compra@{menu\+\_\+compra}!gerenciador\+Listas.\+h@{gerenciador\+Listas.\+h}}
+\subsubsection[{\texorpdfstring{menu\+\_\+compra()}{menu_compra()}}]{\setlength{\rightskip}{0pt plus 5cm}void menu\+\_\+compra (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorListas_8h_a4490c10216a66184c473092ef8f32b36}{}\label{gerenciadorListas_8h_a4490c10216a66184c473092ef8f32b36}
+
+
+Mostra o menu de compras no supermercado. 
+
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+$<$ inicializa com valor inválido.
+
+Verifica como os dados são lidos.
+
+Concatena zeros a esquerda se necessario.
+
+Atualiza lista\+Atual para valor obtido de listas.\+txt.
+
+conditional\+: Checa se o codigo de barras inserido eh valido true =$>$ limpa tela, printa mensagem de erro e sai da funcao false =$>$ nada acontece
+
+Criar string a partir do const char$\ast$ para usar compare.
+
+loop\+: percorre todas os elementos da lista.
+
+$<$ finalizar operação \index{gerenciador\+Listas.\+h@{gerenciador\+Listas.\+h}!menu\+\_\+lista@{menu\+\_\+lista}}
+\index{menu\+\_\+lista@{menu\+\_\+lista}!gerenciador\+Listas.\+h@{gerenciador\+Listas.\+h}}
+\subsubsection[{\texorpdfstring{menu\+\_\+lista()}{menu_lista()}}]{\setlength{\rightskip}{0pt plus 5cm}void menu\+\_\+lista (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorListas_8h_a1924d980a2ee225d6a41651c26c06226}{}\label{gerenciadorListas_8h_a1924d980a2ee225d6a41651c26c06226}
+
+
+usuário selecionou opção de Criar/\+Editar Lista. 
+
+Arquivo com conjunto de headers para o modulo de gerenciamento de listas
+
+usuário selecionou opção de Criar/\+Editar Lista.
+
+\begin{DoxyReturn}{Returns}
+void. Printa na tela o menu. 
+\end{DoxyReturn}
+Cria string a partir do const char$\ast$ para usar compare.
+
+Concatena zeros a esquerda se necessario.
+
+Concatena zeros a esquerda se necessario.
+
+Atualiza lista\+Atual para valor obtido do banco de dados.
+
+conditional\+: Checa se lista existe true =$>$ limpa a tela, printa mensagem de erro e sai da funcao false =$>$ nada acontece
+
+Apaga a lista atual; será adicionada posteriormente após as edições
+
+Nesse ponto, lista\+Atual já contem a lista do cliente.
+
+conditional\+: Checa se oitem não foi encontrado na pesquisa por nome true =$>$ limpa a tela, printa mensagem de erro, salva estado atual da lista e sai da funcao. false =$>$ limpa a tela e printa mensagem de que deu certo.
+
+Atualiza lista com novo elemento.
+
+Mostra a lista para o cliente.
+
+Salva lista no arquivo apenas ao finalizar todas as iterações.
+
+$<$ finalizar operação \index{gerenciador\+Listas.\+h@{gerenciador\+Listas.\+h}!salvar\+Lista@{salvar\+Lista}}
+\index{salvar\+Lista@{salvar\+Lista}!gerenciador\+Listas.\+h@{gerenciador\+Listas.\+h}}
+\subsubsection[{\texorpdfstring{salvar\+Lista(lista lista\+Final)}{salvarLista(lista listaFinal)}}]{\setlength{\rightskip}{0pt plus 5cm}void salvar\+Lista (
+\begin{DoxyParamCaption}
+\item[{{\bf lista}}]{lista\+Final}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorListas_8h_a4a8488f8f94f5162cc6f447d823f3459}{}\label{gerenciadorListas_8h_a4a8488f8f94f5162cc6f447d823f3459}
+
+
+Função que atualiza os dados da lista no banco de dados.  lista\+Final é o objeto lista a ser atualizado. 
+
+\begin{DoxyReturn}{Returns}
+void. Modifica o arquivo de banco de dados. 
+\end{DoxyReturn}

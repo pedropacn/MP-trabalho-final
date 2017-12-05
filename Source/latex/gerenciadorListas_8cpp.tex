@@ -1,0 +1,221 @@
+\hypertarget{gerenciadorListas_8cpp}{}\section{gerenciador\+Listas.\+cpp File Reference}
+\label{gerenciadorListas_8cpp}\index{gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}}
+{\ttfamily \#include \char`\"{}lista.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}common.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}gerenciador\+Itens.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$fstream$>$}\\*
+{\ttfamily \#include $<$ncurses.\+h$>$}\\*
+{\ttfamily \#include $<$string.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+Include dependency graph for gerenciador\+Listas.\+cpp\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{gerenciadorListas_8cpp_a69f2ff22ecdefa469701138efba0b5c5}{S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM}~200
+\begin{DoxyCompactList}\small\item\em $<$ importa modulo de funcoes comuns. \end{DoxyCompactList}\item 
+\#define {\bfseries S\+I\+Z\+E\+\_\+\+I\+D\+\_\+\+L\+I\+S\+TA}~4\hypertarget{gerenciadorListas_8cpp_a53c8c7b47461369f96778fb379a7a6ad}{}\label{gerenciadorListas_8cpp_a53c8c7b47461369f96778fb379a7a6ad}
+
+\item 
+\#define {\bfseries S\+I\+Z\+E\+\_\+\+I\+D\+\_\+\+U\+S\+ER}~2\hypertarget{gerenciadorListas_8cpp_aff5be8b0d0c107916a1b88921b364f00}{}\label{gerenciadorListas_8cpp_aff5be8b0d0c107916a1b88921b364f00}
+
+\item 
+\#define {\bfseries S\+I\+Z\+E\+\_\+\+C\+O\+D\+B\+A\+R\+R\+AS}~13\hypertarget{gerenciadorListas_8cpp_a90157bd1b4c7dc00daba5dbe837df0ee}{}\label{gerenciadorListas_8cpp_a90157bd1b4c7dc00daba5dbe837df0ee}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{gerenciadorListas_8cpp_aeab4e3c278f3a6dc6e87ed04df7e4103}{exibir\+Lista} (\hyperlink{structlista}{lista} lista\+Exibida)
+\begin{DoxyCompactList}\small\item\em Mostra items da lista na tela, o numero de itens e o dono na lista.  lista\+Exibida eh o objeto da lista a ser inserida. \end{DoxyCompactList}\item 
+\hyperlink{structlista}{lista} \hyperlink{gerenciadorListas_8cpp_a4a5cacbd6c62d639a8c793b7b20cfc99}{adiciona\+Na\+Lista} (\hyperlink{structitem}{item} adicionado, \hyperlink{structlista}{lista} lista\+Compras)
+\begin{DoxyCompactList}\small\item\em Função que adicona um item na lista.  adicionado é objeto item a ser adicionado na lista.  lista\+Compras é objeto lista onde o item sera adicionado. \end{DoxyCompactList}\item 
+\hyperlink{structlista}{lista} \hyperlink{gerenciadorListas_8cpp_ad28e593c4d21f0af7306454d26dd237e}{remove\+Da\+Lista} (string item\+Removido, \hyperlink{structlista}{lista} lista\+Compras)
+\begin{DoxyCompactList}\small\item\em Função que remove a primeira ocorrencia de um item na lista.  item\+Removido é nome do item a ser removido  lista\+Compras é o objeto lista aonde se encontra o item. \end{DoxyCompactList}\item 
+\hyperlink{structlista}{lista} \hyperlink{gerenciadorListas_8cpp_a1767beb7be90700422ce376ad2e7ccf4}{recuperar\+Lista\+Por\+Cod} (string cod\+Lista\+Recuperada)
+\begin{DoxyCompactList}\small\item\em Função que procura uma lista pelo seu codigo.  cod\+Lista\+Recuperada é o codigo da lista a ser recuperada. \end{DoxyCompactList}\item 
+string \hyperlink{gerenciadorListas_8cpp_a7a59f573175b5157eb28585c8fd33092}{apagar\+Lista} (string string\+Cod\+Lista)
+\begin{DoxyCompactList}\small\item\em Função que apaga a lista no banco de dados e retorna seu nome.  string\+Cod\+Lista é o codigo da lista a ser apagada. \end{DoxyCompactList}\item 
+void \hyperlink{gerenciadorListas_8cpp_a4a8488f8f94f5162cc6f447d823f3459}{salvar\+Lista} (\hyperlink{structlista}{lista} lista\+Final)
+\begin{DoxyCompactList}\small\item\em Função que atualiza os dados da lista no banco de dados.  lista\+Final é o objeto lista a ser atualizado. \end{DoxyCompactList}\item 
+void \hyperlink{gerenciadorListas_8cpp_a1924d980a2ee225d6a41651c26c06226}{menu\+\_\+lista} ()
+\begin{DoxyCompactList}\small\item\em Função da interface que exibe o menu da lista. Opções mostradas são as de criar ou editar itens ja cadastrados na lista. \end{DoxyCompactList}\item 
+void \hyperlink{gerenciadorListas_8cpp_a4490c10216a66184c473092ef8f32b36}{menu\+\_\+compra} ()
+\begin{DoxyCompactList}\small\item\em Mostra o menu de compras no supermercado. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\index{gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}!S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM@{S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM}}
+\index{S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM@{S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM}!gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}}
+\subsubsection[{\texorpdfstring{S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM}{SIZE_NAME_ITEM}}]{\setlength{\rightskip}{0pt plus 5cm}\#define S\+I\+Z\+E\+\_\+\+N\+A\+M\+E\+\_\+\+I\+T\+EM~200}\hypertarget{gerenciadorListas_8cpp_a69f2ff22ecdefa469701138efba0b5c5}{}\label{gerenciadorListas_8cpp_a69f2ff22ecdefa469701138efba0b5c5}
+
+
+$<$ importa modulo de funcoes comuns. 
+
+Módulo de funções de gerenciamento das listas. Bibliotecas utilizadas do C e C++.$<$ manipular arquivos com a funcao getline(). $<$ interface grafica. $<$ manipulação de strings. para utilizar a função atof(). Define M\+A\+C\+R\+OS de tamanhos para o sistema e duas variaveis globais. 
+
+\subsection{Function Documentation}
+\index{gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}!adiciona\+Na\+Lista@{adiciona\+Na\+Lista}}
+\index{adiciona\+Na\+Lista@{adiciona\+Na\+Lista}!gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}}
+\subsubsection[{\texorpdfstring{adiciona\+Na\+Lista(item adicionado, lista lista\+Compras)}{adicionaNaLista(item adicionado, lista listaCompras)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lista} adiciona\+Na\+Lista (
+\begin{DoxyParamCaption}
+\item[{{\bf item}}]{adicionado, }
+\item[{{\bf lista}}]{lista\+Compras}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorListas_8cpp_a4a5cacbd6c62d639a8c793b7b20cfc99}{}\label{gerenciadorListas_8cpp_a4a5cacbd6c62d639a8c793b7b20cfc99}
+
+
+Função que adicona um item na lista.  adicionado é objeto item a ser adicionado na lista.  lista\+Compras é objeto lista onde o item sera adicionado. 
+
+adiciona item na lista.
+
+\begin{DoxyReturn}{Returns}
+lista atualizada. 
+\end{DoxyReturn}
+T\+O\+DO\+: SE I\+T\+EM E\+X\+I\+S\+TE A\+N\+T\+ES DE S\+A\+IR A\+D\+I\+C\+I\+O\+N\+A\+N\+DO\index{gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}!apagar\+Lista@{apagar\+Lista}}
+\index{apagar\+Lista@{apagar\+Lista}!gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}}
+\subsubsection[{\texorpdfstring{apagar\+Lista(string string\+Cod\+Lista)}{apagarLista(string stringCodLista)}}]{\setlength{\rightskip}{0pt plus 5cm}string apagar\+Lista (
+\begin{DoxyParamCaption}
+\item[{string}]{string\+Cod\+Lista}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorListas_8cpp_a7a59f573175b5157eb28585c8fd33092}{}\label{gerenciadorListas_8cpp_a7a59f573175b5157eb28585c8fd33092}
+
+
+Função que apaga a lista no banco de dados e retorna seu nome.  string\+Cod\+Lista é o codigo da lista a ser apagada. 
+
+\begin{DoxyReturn}{Returns}
+nome da lista apagada. 
+\end{DoxyReturn}
+loop\+: percorre todas as linhas do banco de dados.
+
+conditional\+: Checa se a lista atual é a que deve ser apagada true =$>$ armazena a lista e mostra uma mensagem ao usuário. false =$>$ procura na proxima linha\index{gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}!exibir\+Lista@{exibir\+Lista}}
+\index{exibir\+Lista@{exibir\+Lista}!gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}}
+\subsubsection[{\texorpdfstring{exibir\+Lista(lista lista\+Exibida)}{exibirLista(lista listaExibida)}}]{\setlength{\rightskip}{0pt plus 5cm}void exibir\+Lista (
+\begin{DoxyParamCaption}
+\item[{{\bf lista}}]{lista\+Exibida}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorListas_8cpp_aeab4e3c278f3a6dc6e87ed04df7e4103}{}\label{gerenciadorListas_8cpp_aeab4e3c278f3a6dc6e87ed04df7e4103}
+
+
+Mostra items da lista na tela, o numero de itens e o dono na lista.  lista\+Exibida eh o objeto da lista a ser inserida. 
+
+exibe \textquotesingle{}lista\+Atual\textquotesingle{} na tela.
+
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+\index{gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}!menu\+\_\+compra@{menu\+\_\+compra}}
+\index{menu\+\_\+compra@{menu\+\_\+compra}!gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}}
+\subsubsection[{\texorpdfstring{menu\+\_\+compra()}{menu_compra()}}]{\setlength{\rightskip}{0pt plus 5cm}void menu\+\_\+compra (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorListas_8cpp_a4490c10216a66184c473092ef8f32b36}{}\label{gerenciadorListas_8cpp_a4490c10216a66184c473092ef8f32b36}
+
+
+Mostra o menu de compras no supermercado. 
+
+\begin{DoxyReturn}{Returns}
+void. 
+\end{DoxyReturn}
+$<$ inicializa com valor inválido.
+
+Verifica como os dados são lidos.
+
+Concatena zeros a esquerda se necessario.
+
+Atualiza lista\+Atual para valor obtido de listas.\+txt.
+
+conditional\+: Checa se o codigo de barras inserido eh valido true =$>$ limpa tela, printa mensagem de erro e sai da funcao false =$>$ nada acontece
+
+Criar string a partir do const char$\ast$ para usar compare.
+
+loop\+: percorre todas os elementos da lista.
+
+$<$ finalizar operação \index{gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}!menu\+\_\+lista@{menu\+\_\+lista}}
+\index{menu\+\_\+lista@{menu\+\_\+lista}!gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}}
+\subsubsection[{\texorpdfstring{menu\+\_\+lista()}{menu_lista()}}]{\setlength{\rightskip}{0pt plus 5cm}void menu\+\_\+lista (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorListas_8cpp_a1924d980a2ee225d6a41651c26c06226}{}\label{gerenciadorListas_8cpp_a1924d980a2ee225d6a41651c26c06226}
+
+
+Função da interface que exibe o menu da lista. Opções mostradas são as de criar ou editar itens ja cadastrados na lista. 
+
+usuário selecionou opção de Criar/\+Editar Lista.
+
+\begin{DoxyReturn}{Returns}
+void. Printa na tela o menu. 
+\end{DoxyReturn}
+Cria string a partir do const char$\ast$ para usar compare.
+
+Concatena zeros a esquerda se necessario.
+
+Concatena zeros a esquerda se necessario.
+
+Atualiza lista\+Atual para valor obtido do banco de dados.
+
+conditional\+: Checa se lista existe true =$>$ limpa a tela, printa mensagem de erro e sai da funcao false =$>$ nada acontece
+
+Apaga a lista atual; será adicionada posteriormente após as edições
+
+Nesse ponto, lista\+Atual já contem a lista do cliente.
+
+conditional\+: Checa se oitem não foi encontrado na pesquisa por nome true =$>$ limpa a tela, printa mensagem de erro, salva estado atual da lista e sai da funcao. false =$>$ limpa a tela e printa mensagem de que deu certo.
+
+Atualiza lista com novo elemento.
+
+Mostra a lista para o cliente.
+
+Salva lista no arquivo apenas ao finalizar todas as iterações.
+
+$<$ finalizar operação \index{gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}!recuperar\+Lista\+Por\+Cod@{recuperar\+Lista\+Por\+Cod}}
+\index{recuperar\+Lista\+Por\+Cod@{recuperar\+Lista\+Por\+Cod}!gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}}
+\subsubsection[{\texorpdfstring{recuperar\+Lista\+Por\+Cod(string cod\+Lista\+Recuperada)}{recuperarListaPorCod(string codListaRecuperada)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lista} recuperar\+Lista\+Por\+Cod (
+\begin{DoxyParamCaption}
+\item[{string}]{cod\+Lista\+Recuperada}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorListas_8cpp_a1767beb7be90700422ce376ad2e7ccf4}{}\label{gerenciadorListas_8cpp_a1767beb7be90700422ce376ad2e7ccf4}
+
+
+Função que procura uma lista pelo seu codigo.  cod\+Lista\+Recuperada é o codigo da lista a ser recuperada. 
+
+\begin{DoxyReturn}{Returns}
+lista buscada. 
+\end{DoxyReturn}
+loop\+: percorre todas as linhas do banco de dados.
+
+substring convertida para inteiro usando atoi.
+
+conditional\+: Checa se a lista pesquisada foi encontrada true =$>$ armazena a lista e quebra o loop. false =$>$ nada acontece.
+
+$<$ interrompe while \index{gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}!remove\+Da\+Lista@{remove\+Da\+Lista}}
+\index{remove\+Da\+Lista@{remove\+Da\+Lista}!gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}}
+\subsubsection[{\texorpdfstring{remove\+Da\+Lista(string item\+Removido, lista lista\+Compras)}{removeDaLista(string itemRemovido, lista listaCompras)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf lista} remove\+Da\+Lista (
+\begin{DoxyParamCaption}
+\item[{string}]{item\+Removido, }
+\item[{{\bf lista}}]{lista\+Compras}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorListas_8cpp_ad28e593c4d21f0af7306454d26dd237e}{}\label{gerenciadorListas_8cpp_ad28e593c4d21f0af7306454d26dd237e}
+
+
+Função que remove a primeira ocorrencia de um item na lista.  item\+Removido é nome do item a ser removido  lista\+Compras é o objeto lista aonde se encontra o item. 
+
+\begin{DoxyReturn}{Returns}
+lista atualizada. 
+\end{DoxyReturn}
+loop\+: percorre todas os elementos da lista.\index{gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}!salvar\+Lista@{salvar\+Lista}}
+\index{salvar\+Lista@{salvar\+Lista}!gerenciador\+Listas.\+cpp@{gerenciador\+Listas.\+cpp}}
+\subsubsection[{\texorpdfstring{salvar\+Lista(lista lista\+Final)}{salvarLista(lista listaFinal)}}]{\setlength{\rightskip}{0pt plus 5cm}void salvar\+Lista (
+\begin{DoxyParamCaption}
+\item[{{\bf lista}}]{lista\+Final}
+\end{DoxyParamCaption}
+)}\hypertarget{gerenciadorListas_8cpp_a4a8488f8f94f5162cc6f447d823f3459}{}\label{gerenciadorListas_8cpp_a4a8488f8f94f5162cc6f447d823f3459}
+
+
+Função que atualiza os dados da lista no banco de dados.  lista\+Final é o objeto lista a ser atualizado. 
+
+\begin{DoxyReturn}{Returns}
+void. Modifica o arquivo de banco de dados. 
+\end{DoxyReturn}
