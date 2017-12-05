@@ -76,7 +76,10 @@ item pesquisaItemPorCodBarras(string codBarras) {
 	string line;
 	ifstream myfile (ITENS_FILE);
 
-	while (getline (myfile,line)) { ///< loop para cada linha.
+	/**
+ 	 * loop: percorre todas as linhas do banco de dados.
+ 	 */
+	while (getline (myfile,line)) {
 
 		temp.codBarras = line.substr(0, 13);
 		temp.preco = line.substr(14, 7);
