@@ -246,7 +246,7 @@ void menu_lista() { //USUARIO DESEJA CRIAR/EDITAR LISTA DE ITENS JA CADASTRADOS
 				novoItem = pesquisaItemPorNome (itemAdicionado);
 
 				if (novoItem.preco.compare("0000.00") == 0) { //item não foi encontrado na pesquisa por nome
-					printw("Item de nome %s não foi encontrado no cadastro de itens\n", itemAdicionado);
+					printw("\nItem de nome %s não foi encontrado no cadastro de itens\n", itemAdicionado);
 					printw("Utilize a opção 2 no menu principal para cadastrá-lo.");
 					salvarLista(listaAtual);
 					return;
@@ -283,7 +283,7 @@ void menu_compra() { //REALIZA COMPRA NO MERCADO
 	listaAtual.codLista = ""; //inicializa com valor inválido
 	char codListaRecuperada[SIZE_ID_LISTA], numUsuario[SIZE_ID_LISTA]; //VERIFICAR COMO SAO LIDOS
 
-	printw("Insira o código da lista cujas compras serão realizadas\n");
+	printw("\nInsira o código da lista cujas compras serão realizadas\n");
 	getnstr(codListaRecuperada,SIZE_ID_LISTA);
 	listaAtual = recuperarListaPorCod(codListaRecuperada); //atualiza listaAtual para valor obtido de listas.txt
 	
